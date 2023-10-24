@@ -17,9 +17,9 @@ Para cualquier duda o problema mandar un correo a la coordinadora del curso, la 
 
 ## Instructores 👾
 
-Evelia Coss
-Sofia Salazar
-Diego Ramirez
+- Evelia Coss
+- Sofia Salazar
+- Diego Ramirez
 
 ## Contenido 📌
 
