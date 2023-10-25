@@ -55,7 +55,7 @@ paquetes = c("DESeq2", "tximport", "topGO", "biomaRT")
 BiocManager::install(paquetes)
 ```
 
-- Paquetes de R
+- Paquetes de R (CRAN)
   - RColorBrewer (opcional)
   - tidyverse
   - dplyr
