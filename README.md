@@ -2,7 +2,7 @@
 
 ## Información sobre horarios 💻
 - Lunes 6 de nov de 1:30 pm a 3:30 pm CDMX (GMT-6)
-- Martes 7 de nov de 11:00 pm a 1:00 pm CDMX (GMT-6)
+- Martes 7 de nov de 9:00 am a 11:00 am CDMX (GMT-6)
 - Miercoles 8 de nov de 9:00 am a 11:00 am CDMX (GMT-6)
 - Jueves 9 de nov de 9:00 am a 11:00 am CDMX (GMT-6)
 - Viernes 10 de nov de 9:00 am a 11:00 am CDMX (GMT-6)
@@ -25,7 +25,7 @@ Para cualquier duda o problema mandar un correo a la coordinadora del curso, la 
 
 - Dia 1. Aspectos generales de RNA-Seq / Control de calidad de los datos - Evelia Coss
 - Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R - Sofia Salazar
-- Dia 3.  - Sofia Salazar
+- Dia 3. Trabajando con datos de RNA-seq de distintas fuentes en R
 - Dia 4. Normalización y Corrección por batch / DEG con DESeq2 y edgeR - Diego Ramirez
 - Dia 5. GSEA - Análisis funcional - Diego Ramirez
 
@@ -71,6 +71,15 @@ install.packages("dplyr")
 install.packages("ggrepel")
 install.packages("ggplot2")
 ```
+**Importante**
+
+Si deseas seguir el pipeline de análisis de RNA-seq, es recomendado si tienes acceso a un clúster de supercomputadoras. La clase número 2 estará basada en el cluster de DNA de LAVIS UNAM. Los programas que utilizaremos serán los siguientes:
+
+- [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
+- [multiqc](https://multiqc.info/)
+- [trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
+- [STAR](https://github.com/alexdobin/STAR/tree/master)
+
 
 ## Licencia y términos de uso
 
