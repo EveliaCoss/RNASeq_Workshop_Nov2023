@@ -8,7 +8,9 @@ Curso en línea por Teams
 
 Totalmente gratuito
 
-Las clases serán grabadas y se encontraran almacenados en este GitHub. 
+Las clases serán grabadas y se encontrarán almacenados en este GitHub. 
+
+El github estará disponible en su versión final hasta el lunes 6 de noviembre.
 
 ## Información sobre horarios 💻
 - Lunes 6 de nov de 1:30 pm a 3:30 pm CDMX (GMT-6)
@@ -104,6 +106,9 @@ Si deseas seguir el pipeline de análisis de RNA-seq, es recomendado si tienes a
 - [trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
 - [STAR](https://github.com/alexdobin/STAR/tree/master)
 
+## Cursos relacionados
+
+- [VieRnes de Bioinformática](https://github.com/EveliaCoss/ViernesBioinfo)
 
 ## Licencia y términos de uso 
 
