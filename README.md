@@ -1,4 +1,6 @@
-<img src='Workshop_RNASeq.png' width='400' align="center" >
+<p align="center">
+<img src='Workshop_RNASeq.png' width='400'>
+</p>
 
 # Workshop: Análisis de datos de RNA-Seq
 
