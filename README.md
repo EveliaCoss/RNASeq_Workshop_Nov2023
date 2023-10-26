@@ -19,14 +19,14 @@ Para cualquier duda o problema mandar un correo a la coordinadora del curso, la 
 
 El módulo consta de sesiones teóricas y prácticas impartidas vía Teams, que cubrirán aspectos básicos del tópico como:
 
-•	Calidad y limpieza de archivos fastq
-•	Alineamiento y ensamblaje con el genoma de referencia usando STAR
-•	Generación del archivo de cuentas crudas
-•	Importar datos en R
-•	Normalización y corrección por batch
-•	Expresión diferencial con DESEq2 y edgeR
-•	Análisis funcional de los genes detectados
-•	visualización grafica de los resultados
+- Calidad y limpieza de archivos fastq
+- Alineamiento y ensamblaje con el genoma de referencia usando STAR
+- Generación del archivo de cuentas crudas
+- Importar datos en R
+- Normalización y corrección por batch
+- Expresión diferencial con DESEq2 y edgeR
+- Análisis funcional de los genes detectados
+- Visualización grafica de los resultados
 
 Se darán presentaciones detalladas del uso de programas clave, todos de código fuente abierto, usando datos tomados de las bases de datos. También se presentará el uso de algunos scripts de Bash y R muy sencillos, con el objetivo de aprender los aspectos básicos de estos lenguajes para el análisis de datos transcriptómico.
 
