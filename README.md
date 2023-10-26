@@ -1,3 +1,5 @@
+![flyer](Workshop_RNASeq.png)
+
 # Workshop: Análisis de datos de RNA-Seq
 
 ## Información sobre horarios 💻
