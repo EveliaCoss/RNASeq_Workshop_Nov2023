@@ -11,7 +11,7 @@
 
 Las inscripciones comenzaran el jueves 26 de octubre y terminaran el 2 de noviembre a las 4 pm.
 
-Da click en el siguiente link:
+Da click en el siguiente link: https://forms.gle/P9FnLgfnjjommZkX9
 
 Para cualquier duda o problema mandar un correo a la coordinadora del curso, la Dra. Evelia Coss (ecoss@liigh.unam.mx).
 
