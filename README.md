@@ -1,4 +1,3 @@
-![flyer](Workshop_RNASeq.png)
 <img src='Workshop_RNASeq.png' width='400'>
 
 # Workshop: Análisis de datos de RNA-Seq
