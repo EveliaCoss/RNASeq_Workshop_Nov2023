@@ -1,4 +1,4 @@
-.center[<img src='Workshop_RNASeq.png' width='400'>]
+<img src='Workshop_RNASeq.png' width='400' align="center" >
 
 # Workshop: Análisis de datos de RNA-Seq
 
