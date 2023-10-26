@@ -105,13 +105,15 @@ Si deseas seguir el pipeline de análisis de RNA-seq, es recomendado si tienes a
 - [STAR](https://github.com/alexdobin/STAR/tree/master)
 
 
-## Licencia y términos de uso
+## Licencia y términos de uso 
 
 El material de los VieRnes de Bioinformatica se distribuye públicamente a través de este repositorio GitHub bajo la [Licencia No Comercial Creative Commons 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
 Creative Commons Licence This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0](https://creativecommons.org/licenses/by-nc/4.0/).
 
-## Agradecimientos
+## Agradecimientos ⭐
+
+Queremos agradecer al [LIIGH - UNAM](https://liigh.unam.mx) por el apoyo y facilidades prestadas para poder impartir estos cursos. Queremos explícitamente agradecer, de manera muy especial, a la [Dra. Maria Avila](https://liigh.unam.mx/profile/dra-maria-c-avila-arcos/), la [Dra, Alejandra Medina-Rivera](https://liigh.unam.mx/profile/dra-alejandra-medina-rivera/) y Licenciada Eglee Lomelin por su extraordinaria labor y por impulsar estos cursos para el crecimiemnto de todos.
 
 -----
 Cursos hechos con amor 💜
