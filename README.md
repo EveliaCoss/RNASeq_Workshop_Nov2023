@@ -4,6 +4,12 @@
 
 # Workshop: Análisis de datos de RNA-Seq
 
+Curso en línea por Teams
+
+Totalmente gratuito
+
+Las clases serán grabadas y se encontraran almacenados en este GitHub. 
+
 ## Información sobre horarios 💻
 - Lunes 6 de nov de 1:30 pm a 3:30 pm CDMX (GMT-6)
 - Martes 7 de nov de 9:00 am a 11:00 am CDMX (GMT-6)
@@ -36,9 +42,9 @@ Se darán presentaciones detalladas del uso de programas clave, todos de código
 
 ## Instructores 👾
 
-- Evelia Coss
-- Sofia Salazar
-- Diego Ramirez
+- Evelia Coss, Posdoc de la Dra. Alejandra Medina, LIIGH-UNAM
+- Sofia Salazar, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
+- Diego Ramirez, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
 
 ## Contenido 📌
 
@@ -47,7 +53,6 @@ Se darán presentaciones detalladas del uso de programas clave, todos de código
 - Dia 3. Trabajando con datos de RNA-seq de distintas fuentes en R
 - Dia 4. Normalización y Corrección por batch / DEG con DESeq2 y edgeR - Diego Ramirez
 - Dia 5. GSEA - Análisis funcional - Diego Ramirez
-
 
 ## Requisitos
 
