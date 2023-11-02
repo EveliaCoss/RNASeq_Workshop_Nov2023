@@ -9,8 +9,8 @@ Esta clase está enfocada a mostrar y explicar los comandos que vamos a utilizar
 - Esta clase y los scripts usados están "personalizados" para el uso dentro del cluster de computadoras del LAVIS UNAM llamado DNA. Si tienes acceso a este cluster, se mencionará en la clase qué comandos puedes utilizar literalmente.
 - Si no tienes acceso a el cluster de DNA, pero quieres reproducir la clase, necesitarás lo siguiente:
 
-1. Un archivo del genoma de referencia de ratón versión mm10, lo puedes descargar de [aquí](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.2bit)
-2. Un archivo fasta con los adaptadores de secuencia como [este](https://github.com/timflutre/trimmomatic/blob/master/adapters/TruSeq3-PE-2.fa)
+1. Un archivo del genoma de referencia de ratón versión mm10, lo puedes descargar de [aquí](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/mm10.2bit).
+2. Un archivo fasta con los adaptadores de secuencia como [este](https://github.com/timflutre/trimmomatic/blob/master/adapters/TruSeq3-PE-2.fa).
 3. [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
 4. [multiqc](https://multiqc.info/)
 5. [trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
