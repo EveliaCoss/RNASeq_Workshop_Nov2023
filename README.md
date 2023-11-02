@@ -97,14 +97,9 @@ install.packages("dplyr")
 install.packages("ggrepel")
 install.packages("ggplot2")
 ```
-**Importante**
+### Para las clases 2 y 3:
 
-Si deseas seguir el pipeline de análisis de RNA-seq, es recomendado si tienes acceso a un clúster de supercomputadoras. La clase número 2 estará basada en el cluster de DNA de LAVIS UNAM. Los programas que utilizaremos serán los siguientes:
-
-- [fastqc](https://www.bioinformatics.babraham.ac.uk/projects/fastqc/)
-- [multiqc](https://multiqc.info/)
-- [trimmomatic](http://www.usadellab.org/cms/?page=trimmomatic)
-- [STAR](https://github.com/alexdobin/STAR/tree/master)
+Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
 
 ## Cursos relacionados
 
