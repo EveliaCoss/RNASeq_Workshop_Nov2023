@@ -21,3 +21,5 @@ Esta clase está enfocada a mostrar y explicar los comandos que vamos a utilizar
 Si no quieres/puedes reproducir los pasos en tiempo real, accede a la siguiente carpeta de drive [aquí](https://drive.google.com/drive/folders/1bgpLppdQXtAx1MaCKOASLSP9KY6fFY7q?usp=sharing) en donde podrás encontrar los siguientes archivos y hacer análisis tu mismo:
 
 1. Primer output de multiqc (multiqc_report.html)
+2. Segundo output de multiqc (multiqc_report2.html)
+3. Matrices de cuentas (raw_counts.csv  & raw_counts.RData)
