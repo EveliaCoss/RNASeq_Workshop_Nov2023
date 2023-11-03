@@ -1,0 +1,196 @@
+---
+title: "Workshop: Análisis de datos de RNA-Seq"
+subtitle: "⚔<br/>Aspectos generales de RNA-Seq / Control de calidad de los datos"  
+author: "Dra. Evelia Coss"
+date: "11/6/2023"
+output:
+  xaringan::moon_reader:
+    css: 
+      - xaringan-themer.css
+      - css/mi-tema.css
+    seal: false
+    self_contained: true
+    nature:
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+      slideNumberFormat: "%current%/%total%"           # Numeracion de paginas en el estilo 12/42 
+
+
+---
+
+```{r setup, include = FALSE}
+# Setup chunk
+# Paquetes a usar
+#options(htmltools.dir.version = FALSE) cambia la forma de incluir código, los colores
+
+library(knitr)
+library(tidyverse)
+library(xaringanExtra)
+library(icons)
+library(fontawesome)
+library(emo)
+
+# set default options
+opts_chunk$set(collapse = TRUE,
+               dpi = 300,
+               warning = FALSE,
+               error = FALSE,
+               comment = "#")
+
+top_icon = function(x) {
+  icons::icon_style(
+    icons::fontawesome(x),
+    position = "fixed", top = 10, right = 10
+  )
+}
+
+knit_engines$set("yaml", "markdown")
+
+# Con la tecla "O" permite ver todas las diapositivas
+xaringanExtra::use_tile_view()
+# Agrega el boton de copiar los códigos de los chunks
+xaringanExtra::use_clipboard()
+
+# Crea paneles impresionantes 
+xaringanExtra::use_panelset()
+
+# Para compartir e incrustar en otro sitio web
+xaringanExtra::use_share_again()
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+
+# Funcionalidades de los chunks, pone un triangulito junto a la línea que se señala
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+# Agregar web cam
+xaringanExtra::use_webcam()
+```
+
+```{r xaringan-editable, echo=FALSE}
+# Para tener opciones para hacer editable algun chunk
+xaringanExtra::use_editable(expires = 1)
+# Para hacer que aparezca el lápiz y goma
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-themer Eve, include=FALSE, warning=FALSE}
+# Establecer colores para el tema
+library(xaringanthemer)
+#style_xaringan(
+style_duo_accent(
+  background_color = "#FFFFFF", # color del fondo
+  link_color = "#562457", # color de los links
+  text_bold_color = "#0072CE",
+  primary_color = "#01002B", # Color 1
+  secondary_color = "#CB6CE6", # Color 2
+  inverse_background_color = "#00B7FF", # Color de fondo secundario 
+  
+  # Tipos de letra
+  header_font_google = google_font("Barlow Condensed", "600"), #titulo
+  text_font_google   = google_font("Work Sans", "300", "300i"), #texto
+  code_font_google   = google_font("IBM Plex Mono") #codigo
+)
+
+# https://www.rdocumentation.org/packages/xaringanthemer/versions/0.3.4/topics/style_duo_accent
+```
+
+class: title-slide, middle, center
+background-image: url(figures/Slide1.png) 
+background-position: 90% 75%, 75% 75%, center
+background-size: 1210px,210px, cover
+
+
+.center-column[
+# `r rmarkdown::metadata$title`
+### `r rmarkdown::metadata$subtitle`
+
+####`r rmarkdown::metadata$author` 
+#### `r rmarkdown::metadata$date`
+]
+
+.left[.footnote[R-Ladies Theme[R-Ladies Theme](https://www.apreshill.com/project/rladies-xaringan/)]]
+
+---
+background-image: url(figures/liigh_unam_logo.png) 
+background-position: 10% 10%
+background-size: 10%
+class: middle, center
+
+
+# Sobre mi
+----
+
+.left-col[
+
+### `r fontawesome::fa("dna", fill = "#181818")` Dra. Evelia Lorena Coss-Navarrete
+
+Investigadora Posdoctoral en el Laboratorio Internacional de Investigación sobre el Genoma Humano [(LIIGH), UNAM](https://twitter.com/LIIGH_UNAM), campus Juriquilla
+
+
+[`r fontawesome::fa("link")` Dra Alejandra Medina-Rivera](https://liigh.unam.mx/profile/dra-alejandra-medina-rivera/)
+
+[`r fontawesome::fa("github")` EveliaCoss.github.io](https://eveliacoss.github.io/)
+
+]
+
+
+.center-col[
+
+
+### `r fontawesome::fa("star", fill = "#181818")` Miembro
+
+- [LupusRGMX](https://twitter.com/LupusRgmx)
+
+- [Proyecto JAGUAR](https://twitter.com/PJaguarLATAM)
+
+- [Rladies Morelia](https://www.facebook.com/profile.php?id=100093337606435)
+
+- [CDSB - Mexico](https://twitter.com/CDSBMexico)
+
+- [RIABIO](https://twitter.com/RiaBioNet)
+]
+
+
+.right-col[
+
+### `r fontawesome::fa("circle-nodes", fill = "#181818")` Formación académica
+
+- Doctorado en Biotecnología de Plantas, [Cinvestav, Langebio](https://twitter.com/uga_langebio),  [`r fontawesome::fa("link")` Dra Selene Fernandez-Valverde](https://twitter.com/SelFdz)
+
+- Maestría en Biotecnología de Plantas, [Cinvestav, Unidad Irapuato](https://twitter.com/CinvestavIra)
+
+- Ing. en Biotecnología, [UPSIN](https://www.facebook.com/UPSINSINALOA)
+
+]
+
+---
+
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# Aspectos generales de RNA-Seq
+
+---
+
+## Bioinformática se conforma de la computación, biológica, matemáticas y estadística
+
+
+La bioinformática, en relación con la **genética y la genómica**, es una **subdisciplina científica** que implica el uso de **ciencias informáticas** para *recopilar, almacenar, analizar, diseminar datos biológicos*, como secuencias de ADN y aminoácidos o anotaciones sobre esas secuencias [NIH, 2023](https://www.genome.gov/es/genetics-glossary/Bioinformatica). 
+
+---
+
+
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# Control de calidad de los datos
+
+---
+
+
