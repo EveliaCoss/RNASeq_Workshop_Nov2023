@@ -1,9 +1,10 @@
 # Información importante
 
-## Scripts
+## Archivos útiles
 
 - Los scripts utilizados en esta clase los podrás encontrar en la carpeta `scripts/`
 - El archivo de meta datos usado está en la carpeta `data/`
+- El archivo de adaptadores usado lo podrás encontrar en la carpeta `data/`
 
 ## Requisitos para esta clase
 
@@ -28,3 +29,5 @@ Si no quieres/puedes reproducir los pasos en tiempo real, accede a la siguiente 
 1. Primer output de multiqc (multiqc_report.html)
 2. Segundo output de multiqc (multiqc_report2.html)
 3. Matrices de cuentas (raw_counts.csv  & raw_counts.RData)
+4. Dos ejemplos de los outputs de fastqc (pre-trimming y post-trimming)
+5. El archivo de metadatos (metadata.csv)
