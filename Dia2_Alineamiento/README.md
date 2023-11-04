@@ -1,5 +1,10 @@
 # Información importante
 
+## Scripts
+
+- Los scripts utilizados en esta clase los podrás encontrar en la carpeta `scripts/`
+- El archivo de meta datos usado está en la carpeta `data/`
+
 ## Requisitos para esta clase
 
 Esta clase está enfocada a mostrar y explicar los comandos que vamos a utilizar para alinear lecturas de RNA-seq con el software STAR. Los pasos para esta tarea pueden ser tardados, dependiendo de los recursos computacionales a los que tengas acceso, por lo que el objetivo principal es que entiendas los comandos, y si en un futuro, cuando se tenga acceso a los recursos lo desees reproducir o modificar para tus propios análisis, lo puedas hacer fácilmente.
