@@ -562,6 +562,7 @@ metadata_df$strain <- as.factor(metadata_df$strain)
 metadata_df$tissue <- as.factor(metadata_df$tissue)
 metadata_df$treatment <- as.factor(unlist(metadata_df$treatment))
 metadata_df$zt <- as.numeric(metadata_df$zt)
+metadata_df$sample <- colnames(rse_gene)# Agregamos columna con los nombres de muestras
 head(metadata_df, 2)
 ```
 

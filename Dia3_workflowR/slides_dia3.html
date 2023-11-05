@@ -1611,7 +1611,7 @@ background-color: inherit;
 })(window, document)
 </script>
     <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x5756d8daeb744db9b311f35b12ddbbd","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x31640d7d1394bbb9786d99ad4bb58d7","expires":1}</script>
     <script>(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.himalaya = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -4308,7 +4308,7 @@ library(&quot;recount3&quot;)
 
 ```r
 mouse_projects &lt;- available_projects(organism = &quot;mouse&quot;)
-# 2023-11-05 15:36:04 caching file sra.recount_project.MD.gz.
+# 2023-11-05 15:44:35 caching file sra.recount_project.MD.gz.
 proj_info &lt;- subset(
     mouse_projects,
     project == &quot;SRP186637&quot; &amp; project_type == &quot;data_sources&quot;
@@ -4331,17 +4331,17 @@ Este es un tipo de objeto de R, que además de contener las cuentas por muestra,
 
 ```r
 rse_gene &lt;- create_rse(proj_info)
-# 2023-11-05 15:36:08 downloading and reading the metadata.
-# 2023-11-05 15:36:09 caching file sra.sra.SRP186637.MD.gz.
-# 2023-11-05 15:36:10 caching file sra.recount_project.SRP186637.MD.gz.
-# 2023-11-05 15:36:11 caching file sra.recount_qc.SRP186637.MD.gz.
-# 2023-11-05 15:36:12 caching file sra.recount_seq_qc.SRP186637.MD.gz.
-# 2023-11-05 15:36:13 caching file sra.recount_pred.SRP186637.MD.gz.
-# 2023-11-05 15:36:14 downloading and reading the feature information.
-# 2023-11-05 15:36:14 caching file mouse.gene_sums.M023.gtf.gz.
-# 2023-11-05 15:36:15 downloading and reading the counts: 140 samples across 55421 features.
-# 2023-11-05 15:36:16 caching file sra.gene_sums.SRP186637.M023.gz.
-# 2023-11-05 15:36:19 construcing the RangedSummarizedExperiment (rse) object.
+# 2023-11-05 15:44:38 downloading and reading the metadata.
+# 2023-11-05 15:44:40 caching file sra.sra.SRP186637.MD.gz.
+# 2023-11-05 15:44:41 caching file sra.recount_project.SRP186637.MD.gz.
+# 2023-11-05 15:44:42 caching file sra.recount_qc.SRP186637.MD.gz.
+# 2023-11-05 15:44:43 caching file sra.recount_seq_qc.SRP186637.MD.gz.
+# 2023-11-05 15:44:44 caching file sra.recount_pred.SRP186637.MD.gz.
+# 2023-11-05 15:44:44 downloading and reading the feature information.
+# 2023-11-05 15:44:45 caching file mouse.gene_sums.M023.gtf.gz.
+# 2023-11-05 15:44:46 downloading and reading the counts: 140 samples across 55421 features.
+# 2023-11-05 15:44:47 caching file sra.gene_sums.SRP186637.M023.gz.
+# 2023-11-05 15:44:50 construcing the RangedSummarizedExperiment (rse) object.
 ```
 
 ---
@@ -4379,7 +4379,7 @@ dim(rse_gene)
 ```r
 metadata(rse_gene)
 # $time_created
-# [1] &quot;2023-11-05 15:36:19 CST&quot;
+# [1] &quot;2023-11-05 15:44:50 CST&quot;
 # 
 # $recount3_version
 #           package ondiskversion loadedversion
@@ -4643,13 +4643,14 @@ metadata_df$strain &lt;- as.factor(metadata_df$strain)
 metadata_df$tissue &lt;- as.factor(metadata_df$tissue)
 metadata_df$treatment &lt;- as.factor(unlist(metadata_df$treatment))
 metadata_df$zt &lt;- as.numeric(metadata_df$zt)
+metadata_df$sample &lt;- colnames(rse_gene)# Agregamos columna con los nombres de muestras
 head(metadata_df, 2)
 #              age gender        phase          source_name  strain
 # 1 10-11-week-old   male Rest pha.... Gastrocnemius muscle C57B6/J
 # 2 10-11-week-old   male Rest pha.... Gastrocnemius muscle C57B6/J
-#                 tissue treatment zt
-# 1 Gastrocnemius muscle  Exercise  4
-# 2 Gastrocnemius muscle Sedentary  4
+#                 tissue treatment zt     sample
+# 1 Gastrocnemius muscle  Exercise  4 SRR8611757
+# 2 Gastrocnemius muscle Sedentary  4 SRR8611758
 ```
 
     </textarea>
