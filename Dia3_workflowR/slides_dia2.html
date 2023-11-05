@@ -1611,7 +1611,7 @@ background-color: inherit;
 })(window, document)
 </script>
     <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"cbd123435b2d4f6a9b5d0f8d95840f2f","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x121921e06d44eb0bcd3f5eeefb17492","expires":1}</script>
     <script>(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.himalaya = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -4066,6 +4066,8 @@ class: inverse, center, middle
 
 ### 4. Alineamiento con STAR
 
+### 5. Cargar datos a R
+
 ---
 
 class: inverse, center, middle
@@ -4489,7 +4491,7 @@ STAR --runThreadN 12 \
 Entremos al 
 [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) para entender las opciones
 
----
+--- 
 
 ## 2. Alinear con STAR
 
@@ -4501,16 +4503,177 @@ for f in $FILES
 do
     base=$(basename $f _1_trimmed.fq.gz)
     echo $base
-    STAR --runThreadN 12 --genomeDir $index --readFilesIn $f /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/$base&quot;_2_trimmed.fq.gz&quot; \
-    --outSAMtype BAM SortedByCoordinate \
-    --quantMode GeneCounts \
-    --readFilesCommand zcat \
-    --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
+    STAR --runThreadN 12 --genomeDir $index --readFilesIn $f /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/$base&quot;_2_trimmed.fq.gz&quot; --outSAMtype BAM SortedByCoordinate \
+    --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
 done
 ```
 
 ---
 
+class: inverse, center, middle
+
+<svg aria-hidden="true" role="img" viewBox="0 0 640 512" style="height:3em;width:3.75em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M128 0C92.7 0 64 28.7 64 64V288H19.2C8.6 288 0 296.6 0 307.2C0 349.6 34.4 384 76.8 384H320V288H128V64H448V96h64V64c0-35.3-28.7-64-64-64H128zM512 128H400c-26.5 0-48 21.5-48 48V464c0 26.5 21.5 48 48 48H592c26.5 0 48-21.5 48-48V256H544c-17.7 0-32-14.3-32-32V128zm32 0v96h96l-96-96z"/></svg>
+# 5. Cargar datos a R
+
+---
+
+# Cargar datos a R
+
+Utilizaremos los archivos `SRRxxx_ReadsPerGene.out.tab`
+
+
+```bash
+cd /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output
+less SRR12363102_ReadsPerGene.out.tab
+```
+
+&lt;img src=&quot;figures/out_counts.png&quot;, height = &quot;400&quot;&gt;
+
+---
+
+## Información de los archivos `.out.tab`
+
+**column 1:** gene ID
+
+**column 2:** counts for unstranded RNA-seq
+
+**column 3:** counts for the 1st read strand aligned with RNA (htseq-count option -s yes)
+
+**column 4:** counts for the 2nd read strand aligned with RNA (htseq-count option -s reverse)
+
+---
+
+
+```bash
+module load r/4.0.2
+R
+```
+
+
+## Cargando los archivos de cuentas a R
+
+**Las siguientes lineas de commandos, están en lenguaje de R**
+
+
+```r
+indir &lt;- &quot;/mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output&quot;
+setwd(indir)
+files &lt;- dir(pattern = &quot;ReadsPerGene.out.tab&quot;)
+```
+
+Exploremos los datos
+
+
+```r
+files
+# [1] &quot;SRR12363092_ReadsPerGene.out.tab&quot; &quot;SRR12363093_ReadsPerGene.out.tab&quot;
+# [3] &quot;SRR12363095_ReadsPerGene.out.tab&quot; &quot;SRR12363096_ReadsPerGene.out.tab&quot;
+# [5] &quot;SRR12363098_ReadsPerGene.out.tab&quot; &quot;SRR12363099_ReadsPerGene.out.tab&quot;
+# [7] &quot;SRR12363101_ReadsPerGene.out.tab&quot; &quot;SRR12363102_ReadsPerGene.out.tab&quot;
+```
+
+---
+
+## Creamos una matriz para las cuentas
+
+Esta matriz tendrá como filas a los genes, y como columnas a las muestras.
+
+
+```r
+seq_along(files)
+# [1] 1 2 3 4 5 6 7 8
+```
+
+### Leer cada tabla de cuentas y extraer la segunda columna
+
+
+```r
+counts &lt;- c() # esta sera la matriz
+for(i in seq_along(files)){
+  x &lt;- read.table(file = files[i], sep = &quot;\t&quot;, header = F, as.is = T)
+  # as.is para no convertir tipo de datos
+  counts &lt;- cbind(counts, x[,2])
+}
+```
+
+---
+
+### Exploremos datos
+
+
+```r
+head(counts, 2)
+#         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+# [1,]   342365   426305   353223   283129   346810   374542   256990   276412
+# [2,]  1101670  1231975  1232813   992671  1326029  1317793  1317426  1537736
+```
+
+
+```r
+dim(counts)
+# [1] 129239      4
+```
+
+---
+
+### Cargamos metadatos
+
+
+```r
+metadata &lt;- read.csv(&quot;/mnt/Citosina/amedina/ssalazar/claseSTAR/metadata.csv&quot;, header = F)
+colnames(metadata) &lt;- c(&quot;sample_id&quot;, &quot;type&quot;)
+head(metadata, 2)
+#     sample_id    type
+# 1 SRR12363092 CONTROL
+# 2 SRR12363093 CONTROL
+```
+
+### Creamos dataframe
+
+
+```r
+counts &lt;- as.data.frame(counts)
+```
+
+### Asignamos los nombres de las filas
+
+
+```r
+rownames(counts) &lt;- x[,1] # x es el archivo original, no importa cual sea, tiene las mismas anotaciones
+```
+
+---
+
+### Asignamos los nombres de las columnas
+
+
+```r
+colnames(counts) &lt;- sub(&quot;_ReadsPerGene.out.tab&quot;, &quot;&quot;, files)
+```
+
+
+
+```r
+head(counts, 2)
+
+#                SRR12363092 SRR12363093 SRR12363095 SRR12363096 SRR12363098
+# N_unmapped          342365      426305      353223      283129      346810
+# N_multimapping     1101670     1231975     1232813      992671     1326029
+#                SRR12363099 SRR12363101 SRR12363102
+# N_unmapped          374542      256990      276412
+# N_multimapping     1317793     1317426     1537736
+```
+
+
+### Guardamos
+
+
+```r
+save(counts, file = &quot;/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.RData&quot;)
+write.csv(counts, file = &quot;/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.csv&quot;)
+```
+
+---
 ### SCRIPTS DE LA CLASE
 
 Todos los scripts usados en esta clase están en el [GitHub](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento/scripts)

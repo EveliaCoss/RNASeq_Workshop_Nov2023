@@ -1,6 +1,6 @@
 ---
 title: "Workshop: Análisis de datos de RNA-Seq"
-subtitle: "⚔<br/>Alineamiento e importación de datos a R"  
+subtitle: "⚔<br/>Alineamiento y conteo de RNA-seq"  
 author: "Sofia Salazar"
 date: "11/7/2023"
 output:
@@ -185,8 +185,6 @@ class: inverse, center, middle
 ### 3. Trimming
 
 ### 4. Alineamiento con STAR
-
-### 5. Cargar datos a R
 
 ---
 
@@ -593,7 +591,7 @@ STAR --runThreadN 12 \
 Entremos al 
 [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) para entender las opciones
 
---- 
+---
 
 ## 2. Alinear con STAR
 
@@ -604,163 +602,16 @@ for f in $FILES
 do
     base=$(basename $f _1_trimmed.fq.gz)
     echo $base
-    STAR --runThreadN 12 --genomeDir $index --readFilesIn $f /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/$base"_2_trimmed.fq.gz" --outSAMtype BAM SortedByCoordinate \
-    --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
+    STAR --runThreadN 12 --genomeDir $index --readFilesIn $f /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/$base"_2_trimmed.fq.gz" \
+    --outSAMtype BAM SortedByCoordinate \
+    --quantMode GeneCounts \
+    --readFilesCommand zcat \
+    --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
 done
 ```
 
 ---
 
-class: inverse, center, middle
-
-`r fontawesome::fa("laptop-file", height = "3em")`
-# 5. Cargar datos a R
-
----
-
-# Cargar datos a R
-
-Utilizaremos los archivos `SRRxxx_ReadsPerGene.out.tab`
-
-```{bash, eval = F}
-cd /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output
-less SRR12363102_ReadsPerGene.out.tab
-```
-
-<img src="figures/out_counts.png", height = "400">
-
----
-
-## Información de los archivos `.out.tab`
-
-**column 1:** gene ID
-
-**column 2:** counts for unstranded RNA-seq
-
-**column 3:** counts for the 1st read strand aligned with RNA (htseq-count option -s yes)
-
-**column 4:** counts for the 2nd read strand aligned with RNA (htseq-count option -s reverse)
-
----
-
-```{bash, eval = F}
-module load r/4.0.2
-R
-```
-
-
-## Cargando los archivos de cuentas a R
-
-**Las siguientes lineas de commandos, están en lenguaje de R**
-
-```{r, eval = F}
-indir <- "/mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output"
-setwd(indir)
-files <- dir(pattern = "ReadsPerGene.out.tab")
-```
-
-Exploremos los datos
-
-```{r, eval = F}
-files
-# [1] "SRR12363092_ReadsPerGene.out.tab" "SRR12363093_ReadsPerGene.out.tab"
-# [3] "SRR12363095_ReadsPerGene.out.tab" "SRR12363096_ReadsPerGene.out.tab"
-# [5] "SRR12363098_ReadsPerGene.out.tab" "SRR12363099_ReadsPerGene.out.tab"
-# [7] "SRR12363101_ReadsPerGene.out.tab" "SRR12363102_ReadsPerGene.out.tab"
-```
-
----
-
-## Creamos una matriz para las cuentas
-
-Esta matriz tendrá como filas a los genes, y como columnas a las muestras.
-
-```{r, eval = F}
-seq_along(files)
-# [1] 1 2 3 4 5 6 7 8
-```
-
-### Leer cada tabla de cuentas y extraer la segunda columna
-
-```{r, eval = F}
-counts <- c() # esta sera la matriz
-for(i in seq_along(files)){
-  x <- read.table(file = files[i], sep = "\t", header = F, as.is = T)
-  # as.is para no convertir tipo de datos
-  counts <- cbind(counts, x[,2])
-}
-```
-
----
-
-### Exploremos datos
-
-```{r, eval = F}
-head(counts, 2)
-#         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
-# [1,]   342365   426305   353223   283129   346810   374542   256990   276412
-# [2,]  1101670  1231975  1232813   992671  1326029  1317793  1317426  1537736
-```
-
-```{r, eval = F}
-dim(counts)
-# [1] 129239      4
-```
-
----
-
-### Cargamos metadatos
-
-```{r, eval = F}
-metadata <- read.csv("/mnt/Citosina/amedina/ssalazar/claseSTAR/metadata.csv", header = F)
-colnames(metadata) <- c("sample_id", "type")
-head(metadata, 2)
-#     sample_id    type
-# 1 SRR12363092 CONTROL
-# 2 SRR12363093 CONTROL
-```
-
-### Creamos dataframe
-
-```{r, eval = F}
-counts <- as.data.frame(counts)
-```
-
-### Asignamos los nombres de las filas
-
-```{r, eval = F}
-rownames(counts) <- x[,1] # x es el archivo original, no importa cual sea, tiene las mismas anotaciones
-```
-
----
-
-### Asignamos los nombres de las columnas
-
-```{r, eval = F}
-colnames(counts) <- sub("_ReadsPerGene.out.tab", "", files)
-```
-
-
-```{r, eval = F}
-head(counts, 2)
-
-#                SRR12363092 SRR12363093 SRR12363095 SRR12363096 SRR12363098
-# N_unmapped          342365      426305      353223      283129      346810
-# N_multimapping     1101670     1231975     1232813      992671     1326029
-#                SRR12363099 SRR12363101 SRR12363102
-# N_unmapped          374542      256990      276412
-# N_multimapping     1317793     1317426     1537736
-```
-
-
-### Guardamos
-
-```{r, eval = F}
-save(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.RData")
-write.csv(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.csv")
-```
-
----
 ### SCRIPTS DE LA CLASE
 
 Todos los scripts usados en esta clase están en el [GitHub](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento/scripts)

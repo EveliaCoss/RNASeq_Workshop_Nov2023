@@ -1,0 +1,80 @@
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363092_1.fastq.gz SRR12363092_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 26693226 Both Surviving: 25175489 (94.31%) Forward Only Surviving: 782127 (2.93%) Reverse Only Surviving: 470462 (1.76%) Dropped: 265148 (0.99%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363093_1.fastq.gz SRR12363093_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 29766901 Both Surviving: 28074278 (94.31%) Forward Only Surviving: 856194 (2.88%) Reverse Only Surviving: 543507 (1.83%) Dropped: 292922 (0.98%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363095_1.fastq.gz SRR12363095_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 30052993 Both Surviving: 28407213 (94.52%) Forward Only Surviving: 860767 (2.86%) Reverse Only Surviving: 506943 (1.69%) Dropped: 278070 (0.93%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363096_1.fastq.gz SRR12363096_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 24070114 Both Surviving: 22661338 (94.15%) Forward Only Surviving: 732464 (3.04%) Reverse Only Surviving: 420263 (1.75%) Dropped: 256049 (1.06%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363098_1.fastq.gz SRR12363098_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 25560980 Both Surviving: 24219046 (94.75%) Forward Only Surviving: 683980 (2.68%) Reverse Only Surviving: 420841 (1.65%) Dropped: 237113 (0.93%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363099_1.fastq.gz SRR12363099_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 25735924 Both Surviving: 24373106 (94.70%) Forward Only Surviving: 669230 (2.60%) Reverse Only Surviving: 435451 (1.69%) Dropped: 258137 (1.00%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363101_1.fastq.gz SRR12363101_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 21131445 Both Surviving: 20013404 (94.71%) Forward Only Surviving: 538023 (2.55%) Reverse Only Surviving: 385725 (1.83%) Dropped: 194293 (0.92%)
+TrimmomaticPE: Completed successfully
+
+TrimmomaticPE: Started with arguments: -threads 8 -phred33 SRR12363102_1.fastq.gz SRR12363102_2.fastq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_1_unpaired.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_2_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_2_unpaired.fq.gz ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
+Using PrefixPair: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT' and 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGTA'
+Using Long Clipping Sequence: 'AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC'
+Using Long Clipping Sequence: 'GTGACTGGAGTTCAGACGTGTGCTCTTCCGATCT'
+Using Long Clipping Sequence: 'TACACTCTTTCCCTACACGACGCTCTTCCGATCT'
+ILLUMINACLIP: Using 1 prefix pairs, 4 forward/reverse sequences, 0 forward only sequences, 0 reverse only sequences
+Input Read Pairs: 24401866 Both Surviving: 23183242 (95.01%) Forward Only Surviving: 572238 (2.35%) Reverse Only Surviving: 435398 (1.78%) Dropped: 210988 (0.86%)
+TrimmomaticPE: Completed successfully

@@ -1,0 +1,72 @@
+SRR12363092
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363092_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363092_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 13:46:36 ..... started STAR run
+Oct 24 13:46:36 ..... loading genome
+Oct 24 13:47:31 ..... started mapping
+Oct 24 13:56:37 ..... finished mapping
+Oct 24 13:56:45 ..... started sorting BAM
+Oct 24 13:57:45 ..... finished successfully
+SRR12363093
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363093_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363093_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 13:57:50 ..... started STAR run
+Oct 24 13:57:50 ..... loading genome
+Oct 24 13:58:42 ..... started mapping
+Oct 24 14:08:49 ..... finished mapping
+Oct 24 14:08:56 ..... started sorting BAM
+Oct 24 14:10:00 ..... finished successfully
+SRR12363095
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363095_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363095_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 14:10:06 ..... started STAR run
+Oct 24 14:10:06 ..... loading genome
+Oct 24 14:10:48 ..... started mapping
+Oct 24 14:20:43 ..... finished mapping
+Oct 24 14:20:51 ..... started sorting BAM
+Oct 24 14:21:59 ..... finished successfully
+SRR12363096
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363096_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363096_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 14:22:05 ..... started STAR run
+Oct 24 14:22:05 ..... loading genome
+Oct 24 14:22:40 ..... started mapping
+Oct 24 14:30:45 ..... finished mapping
+Oct 24 14:30:53 ..... started sorting BAM
+Oct 24 14:31:44 ..... finished successfully
+SRR12363098
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363098_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363098_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 14:31:49 ..... started STAR run
+Oct 24 14:31:49 ..... loading genome
+Oct 24 14:32:25 ..... started mapping
+Oct 24 14:42:30 ..... finished mapping
+Oct 24 14:42:38 ..... started sorting BAM
+Oct 24 14:43:34 ..... finished successfully
+SRR12363099
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363099_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363099_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 14:43:39 ..... started STAR run
+Oct 24 14:43:39 ..... loading genome
+Oct 24 14:44:16 ..... started mapping
+Oct 24 14:53:17 ..... finished mapping
+Oct 24 14:53:25 ..... started sorting BAM
+Oct 24 14:54:19 ..... finished successfully
+SRR12363101
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363101_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363101_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 14:54:24 ..... started STAR run
+Oct 24 14:54:24 ..... loading genome
+Oct 24 14:55:00 ..... started mapping
+Oct 24 15:02:13 ..... finished mapping
+Oct 24 15:02:21 ..... started sorting BAM
+Oct 24 15:03:10 ..... finished successfully
+SRR12363102
+	STAR --runThreadN 12 --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --readFilesIn /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_1_trimmed.fq.gz /mnt/Citosina/amedina/ssalazar/claseSTAR/TRIM_results/SRR12363102_2_trimmed.fq.gz --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts --readFilesCommand zcat --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/SRR12363102_
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 24 15:03:15 ..... started STAR run
+Oct 24 15:03:15 ..... loading genome
+Oct 24 15:03:52 ..... started mapping
+Oct 24 15:12:07 ..... finished mapping
+Oct 24 15:12:15 ..... started sorting BAM
+Oct 24 15:13:11 ..... finished successfully

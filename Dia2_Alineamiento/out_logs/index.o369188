@@ -1,0 +1,16 @@
+	STAR --runThreadN 30 --runMode genomeGenerate --genomeDir /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index --genomeFastaFiles /mnt/Archives/genome/mouse/mm10/UCSC/chromosomes-1-file/mm10.fa --sjdbGTFfile /mnt/Citosina/amedina/ssalazar/claseSTAR/annotation/mm10.knownGene.gtf --sjdbOverhang 99
+	STAR version: 2.7.9a   compiled: 2021-05-04T09:43:56-0400 vega:/home/dobin/data/STAR/STARcode/STAR.master/source
+Oct 23 22:54:39 ..... started STAR run
+Oct 23 22:54:39 ... starting to generate Genome files
+Oct 23 22:55:54 ..... processing annotations GTF
+Oct 23 22:56:28 ... starting to sort Suffix Array. This may take a long time...
+Oct 23 22:57:05 ... sorting Suffix Array chunks and saving them to disk...
+Oct 23 23:12:52 ... loading chunks from disk, packing SA...
+Oct 23 23:14:56 ... finished generating suffix array
+Oct 23 23:14:56 ... generating Suffix Array index
+Oct 23 23:22:53 ... completed Suffix Array index
+Oct 23 23:22:54 ..... inserting junctions into the genome indices
+Oct 23 23:27:58 ... writing Genome to disk ...
+Oct 23 23:28:08 ... writing Suffix Array to disk ...
+Oct 23 23:29:35 ... writing SAindex to disk
+Oct 23 23:29:46 ..... finished successfully

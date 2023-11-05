@@ -1,0 +1,303 @@
+---
+title: "Workshop: Análisis de datos de RNA-Seq"
+subtitle: "⚔<br/>Trabajando con datos de RNA-seq de distintas fuentes en R"  
+author: "Sofia Salazar"
+date: "11/8/2023"
+output:
+  xaringan::moon_reader:
+    css: 
+      - xaringan-themer.css
+      - css/mi-tema.css
+    seal: false
+    self_contained: true
+    nature:
+      highlightStyle: googlecode
+      highlightLines: true
+      countIncrementalSlides: false
+      ratio: 16:9
+      slideNumberFormat: "%current%/%total%"           # Numeracion de paginas en el estilo 12/42 
+
+
+---
+
+```{r setup, include = FALSE}
+# Setup chunk
+# Paquetes a usar
+#options(htmltools.dir.version = FALSE) cambia la forma de incluir código, los colores
+
+library(knitr)
+library(tidyverse)
+library(xaringanExtra)
+library(icons)
+library(fontawesome)
+library(emo)
+
+# set default options
+opts_chunk$set(collapse = TRUE,
+               dpi = 300,
+               warning = FALSE,
+               error = FALSE,
+               comment = "#")
+
+top_icon = function(x) {
+  icons::icon_style(
+    icons::fontawesome(x),
+    position = "fixed", top = 10, right = 10
+  )
+}
+
+knit_engines$set("yaml", "markdown")
+
+# Con la tecla "O" permite ver todas las diapositivas
+xaringanExtra::use_tile_view()
+# Agrega el boton de copiar los códigos de los chunks
+xaringanExtra::use_clipboard()
+
+# Crea paneles impresionantes 
+xaringanExtra::use_panelset()
+
+# Para compartir e incrustar en otro sitio web
+xaringanExtra::use_share_again()
+xaringanExtra::style_share_again(
+  share_buttons = c("twitter", "linkedin")
+)
+
+# Funcionalidades de los chunks, pone un triangulito junto a la línea que se señala
+xaringanExtra::use_extra_styles(
+  hover_code_line = TRUE,         #<<
+  mute_unhighlighted_code = TRUE  #<<
+)
+
+# Agregar web cam
+xaringanExtra::use_webcam()
+```
+
+```{r xaringan-editable, echo=FALSE}
+# Para tener opciones para hacer editable algun chunk
+xaringanExtra::use_editable(expires = 1)
+# Para hacer que aparezca el lápiz y goma
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-themer Eve, include=FALSE, warning=FALSE}
+# Establecer colores para el tema
+library(xaringanthemer)
+#style_xaringan(
+style_duo_accent(
+  background_color = "#FFFFFF", # color del fondo
+  link_color = "#562457", # color de los links
+  text_bold_color = "#0072CE",
+  primary_color = "#01002B", # Color 1
+  secondary_color = "#CB6CE6", # Color 2
+  inverse_background_color = "#00B7FF", # Color de fondo secundario 
+  
+  # Tipos de letra
+  header_font_google = google_font("Barlow Condensed", "600"), #titulo
+  text_font_google   = google_font("Work Sans", "300", "300i"), #texto
+  code_font_google   = google_font("IBM Plex Mono") #codigo
+)
+
+# https://www.rdocumentation.org/packages/xaringanthemer/versions/0.3.4/topics/style_duo_accent
+```
+
+class: title-slide, middle, center
+background-image: url(figures/Slide1.png) 
+background-position: 90% 75%, 75% 75%, center
+background-size: 1210px,210px, cover
+
+
+.center-column[
+# `r rmarkdown::metadata$title`
+### `r rmarkdown::metadata$subtitle`
+
+####`r rmarkdown::metadata$author` 
+#### `r rmarkdown::metadata$date`
+]
+
+.left[.footnote[R-Ladies Theme[R-Ladies Theme](https://www.apreshill.com/project/rladies-xaringan/)]]
+
+---
+background-image: url(figures/liigh_unam_logo.png) 
+background-position: 10% 10%
+background-size: 10%
+class: middle, center
+
+
+# Sobre mi
+----
+.left-col[ 
+### `r fontawesome::fa("dna", fill = "#181818")` Sofía Salazar Magaña
+
+Estudiante de la [Licenciatura en Ciencias Genómicas](https://www.enesjuriquilla.unam.mx/?page_id=2136) @ ENES-J UNAM
+
+Asistente de investigación @ [RegGenoLab](https://liigh.unam.mx/), LIIGH UNAM
+
+Asistente de investigación @ [Im Lab](https://hakyimlab.org/), The University of Chicago 
+
+
+[`r fontawesome::fa("github")` GitHub: SophSM](https://github.com/SophSM)
+]
+
+.center-col[
+### `r fontawesome::fa("star", fill = "#181818")` Miembro
+
+- [LupusRGMX](https://twitter.com/LupusRgmx)
+
+- [Proyecto JAGUAR](https://twitter.com/PJaguarLATAM)
+]
+
+.right-col[
+<img src="figures/LAB-logo.png", height = "150">
+<img src = "figures/lupus-logo.png">
+<img src = "figures/jaguar-logo.png">
+]
+---
+
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# 1. Cargar datos a R
+
+---
+
+# Cargar datos a R
+
+Utilizaremos los archivos `SRRxxx_ReadsPerGene.out.tab`
+
+```{bash, eval = F}
+cd /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output
+less SRR12363102_ReadsPerGene.out.tab
+```
+
+<img src="figures/out_counts.png", height = "400">
+
+---
+
+## Información de los archivos `.out.tab`
+
+**column 1:** gene ID
+
+**column 2:** counts for unstranded RNA-seq
+
+**column 3:** counts for the 1st read strand aligned with RNA (htseq-count option -s yes)
+
+**column 4:** counts for the 2nd read strand aligned with RNA (htseq-count option -s reverse)
+
+---
+
+```{bash, eval = F}
+module load r/4.0.2
+R
+```
+
+
+## Cargando los archivos de cuentas a R
+
+**Las siguientes lineas de commandos, están en lenguaje de R**
+
+```{r, eval = F}
+indir <- "/mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output"
+setwd(indir)
+files <- dir(pattern = "ReadsPerGene.out.tab")
+```
+
+Exploremos los datos
+
+```{r, eval = F}
+files
+# [1] "SRR12363092_ReadsPerGene.out.tab" "SRR12363093_ReadsPerGene.out.tab"
+# [3] "SRR12363095_ReadsPerGene.out.tab" "SRR12363096_ReadsPerGene.out.tab"
+# [5] "SRR12363098_ReadsPerGene.out.tab" "SRR12363099_ReadsPerGene.out.tab"
+# [7] "SRR12363101_ReadsPerGene.out.tab" "SRR12363102_ReadsPerGene.out.tab"
+```
+
+---
+
+## Creamos una matriz para las cuentas
+
+Esta matriz tendrá como filas a los genes, y como columnas a las muestras.
+
+```{r, eval = F}
+seq_along(files)
+# [1] 1 2 3 4 5 6 7 8
+```
+
+### Leer cada tabla de cuentas y extraer la segunda columna
+
+```{r, eval = F}
+counts <- c() # esta sera la matriz
+for(i in seq_along(files)){
+  x <- read.table(file = files[i], sep = "\t", header = F, as.is = T)
+  # as.is para no convertir tipo de datos
+  counts <- cbind(counts, x[,2])
+}
+```
+
+---
+
+### Exploremos datos
+
+```{r, eval = F}
+head(counts, 2)
+#         [,1]     [,2]     [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+# [1,]   342365   426305   353223   283129   346810   374542   256990   276412
+# [2,]  1101670  1231975  1232813   992671  1326029  1317793  1317426  1537736
+```
+
+```{r, eval = F}
+dim(counts)
+# [1] 129239      4
+```
+
+---
+
+### Cargamos metadatos
+
+```{r, eval = F}
+metadata <- read.csv("/mnt/Citosina/amedina/ssalazar/claseSTAR/metadata.csv", header = F)
+colnames(metadata) <- c("sample_id", "type")
+head(metadata, 2)
+#     sample_id    type
+# 1 SRR12363092 CONTROL
+# 2 SRR12363093 CONTROL
+```
+
+### Creamos dataframe
+
+```{r, eval = F}
+counts <- as.data.frame(counts)
+```
+
+### Asignamos los nombres de las filas
+
+```{r, eval = F}
+rownames(counts) <- x[,1] # x es el archivo original, no importa cual sea, tiene las mismas anotaciones
+```
+
+---
+
+### Asignamos los nombres de las columnas
+
+```{r, eval = F}
+colnames(counts) <- sub("_ReadsPerGene.out.tab", "", files)
+```
+
+
+```{r, eval = F}
+head(counts, 2)
+
+#                SRR12363092 SRR12363093 SRR12363095 SRR12363096 SRR12363098
+# N_unmapped          342365      426305      353223      283129      346810
+# N_multimapping     1101670     1231975     1232813      992671     1326029
+#                SRR12363099 SRR12363101 SRR12363102
+# N_unmapped          374542      256990      276412
+# N_multimapping     1317793     1317426     1537736
+```
+
+
+### Guardamos
+
+```{r, eval = F}
+save(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.RData")
+write.csv(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.csv")
+```
