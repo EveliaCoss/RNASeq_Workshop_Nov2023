@@ -1611,7 +1611,7 @@ background-color: inherit;
 })(window, document)
 </script>
     <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"cbd123435b2d4f6a9b5d0f8d95840f2f","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x1e42803a3d04896968e4048217baba7","expires":1}</script>
     <script>(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.himalaya = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -3988,7 +3988,7 @@ background-size: 1210px,210px, cover
 
 .center-column[
 # Workshop: Análisis de datos de RNA-Seq
-### ⚔&lt;br/&gt;Alineamiento e importación de datos a R
+### ⚔&lt;br/&gt;Alineamiento y conteo de RNA-seq
 
 ####Sofia Salazar 
 #### 11/7/2023
@@ -4202,6 +4202,9 @@ claseSTAR
 │   ├── SRR12363092_2_fastqc.html
 ...
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/qc1.o369176) cómo se ve la ejecución de este comando.
+
 ---
 ### Correr `multiqc`
 
@@ -4326,6 +4329,8 @@ quality: Specifies the minimum quality required to keep a base
 ```bash
 ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/trim.o369193) cómo se ve la ejecución de este comando.
 
 ---
 
@@ -4491,6 +4496,10 @@ Entremos al
 
 ---
 
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/index.o369188) cómo se ve la ejecución de este comando.
+
+---
+
 ## 2. Alinear con STAR
 
 
@@ -4508,6 +4517,8 @@ do
     --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
 done
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/align.o369662) cómo se ve la ejecución de este comando.
 
 ---
 

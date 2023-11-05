@@ -317,6 +317,9 @@ claseSTAR
 │   ├── SRR12363092_2_fastqc.html
 ...
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/qc1.o369176) cómo se ve la ejecución de este comando.
+
 ---
 ### Correr `multiqc`
 
@@ -434,6 +437,8 @@ quality: Specifies the minimum quality required to keep a base
 ```{bash, eval= F}
 ILLUMINACLIP:/mnt/Citosina/amedina/ssalazar/claseSTAR/TruSeq3-PE-2.fa:2:30:10 LEADING:3 TRAILING:3 SLIDINGWINDOW:4:20 MINLEN:80
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/trim.o369193) cómo se ve la ejecución de este comando.
 
 ---
 
@@ -593,6 +598,10 @@ Entremos al
 
 ---
 
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/index.o369188) cómo se ve la ejecución de este comando.
+
+---
+
 ## 2. Alinear con STAR
 
 ```{bash, eval = F}
@@ -609,6 +618,8 @@ do
     --outFileNamePrefix /mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_output/$base
 done
 ```
+
+Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia2_Alineamiento/out_logs/align.o369662) cómo se ve la ejecución de este comando.
 
 ---
 

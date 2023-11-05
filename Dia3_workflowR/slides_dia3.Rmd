@@ -151,12 +151,28 @@ Asistente de investigación @ [Im Lab](https://hakyimlab.org/), The University o
 <img src = "figures/lupus-logo.png">
 <img src = "figures/jaguar-logo.png">
 ]
+
 ---
 
 class: inverse, center, middle
 
 `r fontawesome::fa("laptop-file", height = "3em")`
-# 1. Cargar datos a R
+# Contenido de la clase
+
+---
+
+### 1. Importar nuestros alineamientos de STAR a R
+
+### 2. Creación de matriz de cuentas
+
+### 3. Importar datos de otras fuentes (Recount3)
+
+---
+
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# 1. Importar nuestros alineamientos de STAR a R
 
 ---
 
@@ -213,6 +229,14 @@ files
 
 ---
 
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# 2. Creación de matriz de cuentas
+
+
+---
+
 ## Creamos una matriz para las cuentas
 
 Esta matriz tendrá como filas a los genes, y como columnas a las muestras.
@@ -253,6 +277,18 @@ dim(counts)
 
 ### Cargamos metadatos
 
+**¿Qué son los metadatos?**
+
+Los metadatos nos van a dar la información acerca de las columnas / muestras de nuestros datos. Una tabla de metadatos puede tener, además de los nombres de las muestras, información clínica, por ejemplo, tratamiento, peso, tipo de alimentación, enfermedad (sí o no), etc.
+
+Estos datos son útiles para análisis posteriores, en los que queremos relacionar expresión diferencial con una condición o condiciones.
+
+Para esta clase, solo tenemos metadatos sobre el tipo de muestra (CONTROL, PLS_30min, PLS_15min & PLS_4h).
+
+https://www.nature.com/articles/s41380-020-00955-5
+
+Encuentra los metadatos [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia3_workflowR/data/metadata.csv)
+
 ```{r, eval = F}
 metadata <- read.csv("/mnt/Citosina/amedina/ssalazar/claseSTAR/metadata.csv", header = F)
 colnames(metadata) <- c("sample_id", "type")
@@ -261,6 +297,8 @@ head(metadata, 2)
 # 1 SRR12363092 CONTROL
 # 2 SRR12363093 CONTROL
 ```
+
+---
 
 ### Creamos dataframe
 
@@ -272,6 +310,13 @@ counts <- as.data.frame(counts)
 
 ```{r, eval = F}
 rownames(counts) <- x[,1] # x es el archivo original, no importa cual sea, tiene las mismas anotaciones
+```
+
+```{r, eval = F}
+# for(i in seq_along(files)){
+  # x <- read.table(file = files[i], sep = "\t", header = F, as.is = T)
+  # counts <- cbind(counts, x[,2])
+# }
 ```
 
 ---
@@ -301,3 +346,222 @@ head(counts, 2)
 save(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.RData")
 write.csv(counts, file = "/mnt/Citosina/amedina/ssalazar/claseSTAR/counts/raw_counts.csv")
 ```
+
+---
+
+## Descarga la matriz de cuentas 
+
+- En formato .csv [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia3_workflowR/data/raw_counts.csv)
+
+- En formato .RData [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia3_workflowR/data/raw_counts.RData)
+
+El script de R que utilicé para obtener la matriz de cuentas [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia3_workflowR/scripts/load_data_inR.R)
+
+---
+class: inverse, center, middle
+
+`r fontawesome::fa("laptop-file", height = "3em")`
+# 3. Importar datos de otras fuentes (Recount3)
+
+---
+
+## <img src="figures/recount3.png", height = "50">
+
+Recurso muy útil para descargar datos procesados de RNA-seq. Especialmente, es muy útil si contamos con recursos computacionales limitados.
+
+### **Características de Recount3** 
+
+- Datos **públicos** procesados con la misma pipeline (monorail).
+
+- Contiene cuentas de genes, exones y exon-exon junction, así como archivos de cobertura BigWig.
+
+- Con un total de 8679 estudios de humano y 10088 de ratón. 
+
+- Además, cuenta con un paquete de R/Bioconductor, que nos perimeta además accesar a los metadatos de los estudios.
+
+- Tiene una interfaz gráfica para explorar los estudios disponibles [aquí](https://jhubiostatistics.shinyapps.io/recount3-study-explorer/), la documentación está [aquí](https://rna.recount.bio/docs/)
+
+**Entremos al explorador de estudios**
+
+---
+
+###  Como ejemplo para esta clase, trabajaremos con el estudio SRP186637
+
+<img src="figures/recount_study.png", height = "200">
+
+### Para descargar datos de recount3 en R, necesitaremos instalar el paquete de recount3
+
+```{r, message=FALSE}
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+BiocManager::install("recount3")
+```
+
+---
+
+### Cargamos la librería
+
+```{r, message = F}
+library("recount3")
+```
+
+### Encontremos el estudio que nos interesa
+
+
+```{r}
+mouse_projects <- available_projects(organism = "mouse")
+proj_info <- subset(
+    mouse_projects,
+    project == "SRP186637" & project_type == "data_sources"
+)
+```
+
+Si aparece un mensaje como el siguiente, solo escribe "yes" y enter
+
+```
+/Users/sofiasalazar/Library/Caches/org.R-project.R/R/recount3
+  does not exist, create directory? (yes/no)
+```
+
+---
+
+## Ahora, debemos crear un objeto de tipo **RangedSummarizedExperiment (RSE)**
+
+Este es un tipo de objeto de R, que además de contener las cuentas por muestra, contiene los metadatos y también información sobre el alineamiento de cada muestra. **Es una tabla con más tablas**
+
+```{r}
+rse_gene <- create_rse(proj_info)
+```
+
+---
+
+### **Exploremos los datos**
+
+```{r}
+rse_gene
+```
+
+- `dim` nos dice las dimensiones, tenemos cuentas para **55421 transcritos** en **140 muestras**
+
+```{r}
+dim(rse_gene)
+```
+
+---
+
+- `metadata` nos da información sobre el objeto
+
+```{r}
+metadata(rse_gene)
+```
+
+---
+
+- `assays` aquí es donde están guardados los "assays", en este caso las cuentas crudas (la matriz de cuentas)
+
+```{r}
+head(assays(rse_gene)$raw_counts, 2)
+```
+
+---
+
+- `rownames` son los nombres de los genes (filas)
+
+```{r}
+head(rownames(rse_gene), 5)
+```
+
+- `rowData` nos da información sobre los genes, es una tabla con la siguiente información para gen:
+
+```{r}
+names(rowData(rse_gene))
+```
+
+- `colnames` tiene los nombres de las muestras del estudio
+
+```{r}
+head(colnames(rse_gene), 5)
+```
+
+- `colData` tiene los metadatos de las muestras, es una tabla con la siguiente información para cada muestra
+
+```{r}
+head(names(colData(rse_gene)), 5)
+```
+
+---
+
+Por ejemplo, los metadatos de las muestras se encuentran en "sra.sample_attributes"
+
+```{r}
+head(rse_gene$sra.sample_attributes, 5)
+```
+
+---
+
+### **Transformar cuentas**
+
+De acuerdo con la documentación de recount3, para hacer análisis de expresión diferencial, se deben de escalar las cuentas curdas, hay dos formas de transformar las cuentas "AUC" y "mapped_reads". 
+
+"Tenga en cuenta que las cuentas crudas son la suma de la cobertura del nivel base, por lo que debe tener en cuenta la cobertura total del par de bases para la muestra dada."
+
+Creamos un nuevo **assay** llamado "counts"
+```{r}
+assays(rse_gene)$counts <- transform_counts(rse_gene, by = "auc")
+```
+
+---
+
+Ahora, notemos que tenemos 2 assays
+
+```{r}
+rse_gene
+```
+Para guardar estas cuentas en un `dataframe`
+
+```{r}
+counts_df <- as.data.frame(assays(rse_gene)$counts)
+```
+
+---
+
+### Bonus: extraer metadatos
+
+```{r}
+head(rse_gene$sra.sample_attributes, 5)
+```
+
+Podemos crear un dataframe con esta información mejor acomodada así:
+
+```{r}
+values <- rse_gene$sra.sample_attributes
+# Creamos una lista de listas de los valores separados por |
+value_lists <- strsplit(values, "|", fixed = T)
+# Creamos una lista para meter los valores extraidos
+extracted_values <- list()
+# Iteramos en value_lists y extraemos valores
+for (value_list in value_lists) {
+  # guardamos nuevo elemento, valores separados por ";;", segundo elemento
+  extracted_values[[length(extracted_values) + 1]] <- lapply(strsplit(value_list, ";;", fixed = TRUE), function(x) x[[2]])
+}
+```
+
+---
+
+Creamos una dataframe de la lista de valores extraidos
+
+```{r}
+metadata_df <- as.data.frame(do.call(rbind, extracted_values)) # rbind combina todas las filas de las listas, do.call aplica rbind a toda la lista
+# nombramos columnas
+colnames(metadata_df) <- c("age", "gender", "phase", "source_name",
+                           "strain", "tissue", "treatment", "zt")
+metadata_df$age <- as.factor(metadata_df$age)
+metadata_df$gender <- as.factor(metadata_df$gender)
+metadata_df$source_name <- as.factor(metadata_df$source_name)
+metadata_df$strain <- as.factor(metadata_df$strain)
+metadata_df$tissue <- as.factor(metadata_df$tissue)
+metadata_df$treatment <- as.factor(unlist(metadata_df$treatment))
+metadata_df$zt <- as.numeric(metadata_df$zt)
+head(metadata_df, 2)
+```
+
