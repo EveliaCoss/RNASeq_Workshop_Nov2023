@@ -97,9 +97,30 @@ install.packages("dplyr")
 install.packages("ggrepel")
 install.packages("ggplot2")
 ```
-### Para las clases 2 y 3:
+### Dia 1. Aspectos generales de RNA-Seq / Control de calidad de los datos 
 
-Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
+- Fecha: Lunes 6 de Noviembre 2023
+- Instructora: Evelia Coss
+- Presentación:
+  - [Aspectos generales de RNA-Seq](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#1)
+  - [Control de calidad de los datos](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#41)
+- Grabación:
+- Lecturas y cursos recomendados:
+
+
+### Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R 
+
+- Fecha: Martes 7 de Noviembre 2023
+- Instructora: Sofia Salazar
+- Para las clases 2 y 3:
+  - Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
+
+### Dia 3. Trabajando con datos de RNA-seq de distintas fuentes en R
+
+- Fecha: Miercoles 8 de Noviembre 2023
+- Instructora: Sofia Salazar
+- Para las clases 2 y 3:
+  - Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
 
 ## Cursos relacionados
 
