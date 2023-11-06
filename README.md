@@ -98,6 +98,7 @@ install.packages("ggrepel")
 install.packages("ggplot2")
 ```
 ### Dia 1. Aspectos generales de RNA-Seq / Control de calidad de los datos 
+[LINK PARA REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MzNlNGZiNDktNWU4NC00YzQxLTk3NzMtMTUyOTYyYjFlNTMy%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
 
 - Fecha: Lunes 6 de Noviembre 2023
 - Instructora: Evelia Coss
