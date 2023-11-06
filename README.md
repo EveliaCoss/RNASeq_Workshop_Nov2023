@@ -104,8 +104,13 @@ install.packages("ggplot2")
 - Presentación:
   - [Aspectos generales de RNA-Seq](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#1)
   - [Control de calidad de los datos](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#41)
+  - [Mis primeros pasos en Bash](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#60)
 - Grabación:
 - Lecturas y cursos recomendados:
+  - [Klaus, et al. 2015. EMBO](https://www.embopress.org/doi/full/10.15252/embj.201592958)
+  - [Introduction to RNA-Seq using high-performance computing](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
+  - [Liu et al. 2014. Bioinformatics](https://academic.oup.com/bioinformatics/article/30/3/301/228651)
+  - [Curso RNA-seq](https://biocorecrg.github.io/RNAseq_course_2019)
 
 
 ### Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R 
@@ -121,6 +126,22 @@ install.packages("ggplot2")
 - Instructora: Sofia Salazar
 - Para las clases 2 y 3:
   - Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
+
+### Dia 4. Normalización y Corrección por batch / DEG con DESeq2 y edgeR 
+
+- Fecha: Jueves 9 de Noviembre 2023
+- Instructora: Diego Ramirez
+- Presentación:
+- Grabación:
+- Lecturas y cursos recomendados:
+
+### Dia 5. GSEA - Análisis funcional
+
+- Fecha: Viernes 10 de Noviembre 2023
+- Instructora: Diego Ramirez
+- Presentación:
+- Grabación:
+- Lecturas y cursos recomendados:
 
 ## Cursos relacionados
 
