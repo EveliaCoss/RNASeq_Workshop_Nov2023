@@ -263,7 +263,7 @@ class: inverse, center, middle
 
 ---
 
-# Número de replicas
+# Número de réplicas
 
 Las réplicas experimentales pueden realizarse como **réplicas técnicas** o **réplicas biológicas**.
 
@@ -288,8 +288,7 @@ Se refiere al número de veces que se lee un nucleótido durante la secuenciaci�
 
 > En Plantas, con un mínimo de 30 M de lecturas puedes realizar la identificación de lncRNAs. 
 
-
-```{r, echo=FALSE, out.width='60%', fig.align='center'}
+```{r, echo=FALSE, out.width='50%', fig.align='center'}
 knitr::include_graphics("figures/Figura13.png")
 ```
 
@@ -379,7 +378,7 @@ knitr::include_graphics("figures/Figura4.png")
 # Aspectos generales de Genética
 
 - ¿Cuántos **tipos de RNA** existen? ¿Y en qué especies se encuentran?
-- ¿ **Un RNA solo es transcrito por **una sola polimerasa**?
+- ¿ **Un RNA** solo es transcrito por **una sola polimerasa** ?
 - ¿Cuántas **bandas** esperas encontrar en un gel de RNA (integridad)?
 - ¿En qué **compartimientos celulares** podemos encontrar al rRNA en células eucariotas?
 
@@ -518,12 +517,12 @@ knitr::include_graphics("figures/Figura11.png")
 # Tipos de bibliotecas
 
 .pull-left[
-*Single-end (SE)*
+***Single-end (SE)***
 - Organismo bien anotado.
 - Bajo costo.
 - Solo un sentido en la lectura
 
-*Paired-end (PE)*
+***Paired-end (PE)***
 - Anotación de nuevos genes
 - Análisis de expresión de isoformas
 - Análisis de expresión de genes antisenido
@@ -537,7 +536,7 @@ knitr::include_graphics("figures/Figura12.png")
 
 ---
 
-# Paired-end y Strand-specific
+# *Paired-end* y Strand-specific
 
 ```{r, echo=FALSE, out.width='80%', fig.align='center'}
 knitr::include_graphics("figures/Protocolo_2.png")
@@ -545,7 +544,7 @@ knitr::include_graphics("figures/Protocolo_2.png")
 
 ---
 
-# Paired-end y Strand-specific
+# *Paired-end* y Strand-specific
 
 ```{r, echo=FALSE, out.width='80%', fig.align='center'}
 knitr::include_graphics("figures/Protocolo_3.png")
@@ -580,6 +579,42 @@ knitr::include_graphics("figures/batch_effect_pca1.png")
 .left[.footnote[.black[
 Imagen proveniente de [Hicks, et al. 2015. bioRxiv](https://www.biorxiv.org/content/early/2015/08/25/025528)
 ]]]
+
+---
+# Corrección por Batch effect
+
+Buen diseño experimental con un minimo de 2 Réplicas biológicas, pero aún puede haber variación técnica.
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("figures/batch_effect_pca2.png")
+```
+
+.left[.footnote[.black[
+Imagen proveniente de [Hicks, et al. 2015. bioRxiv](https://www.biorxiv.org/content/early/2015/08/25/025528)
+]]]
+
+---
+# Efecto batch en análisis masivo de transcriptomas
+
+Datos de RNA-Seq Controles vs Lupus (SLE)
+
+.pull-left[
+
+- **Batch effect**
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/batch_effect_pca_Sofi1.png")
+```
+]
+
+.pull-right[
+
+- **Corrección por Batch effect**
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("figures/batch_effect_pca_Sofi2.jpg")
+```
+]
 
 ---
 class: inverse, center, middle
@@ -962,9 +997,9 @@ knitr::include_graphics("figures/bash_terminal.png")
 ```
 
 ---
-# Visual studio
+# Visual Studio Code
 
-Instalar la extension "shell-format"
+Instalar la extension **"shell-format"** y **"Remote - SSH"**
 
 En caos de no contar con el archivo `bashrc`
 
