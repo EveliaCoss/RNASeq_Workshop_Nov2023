@@ -117,6 +117,8 @@ install.packages("ggplot2")
 
 - Fecha: Martes 7 de Noviembre 2023
 - Instructora: Sofia Salazar
+- Presentación:
+  - [Alineamiento](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia2_Alineamiento/slides_dia2.html#1)
 - Para las clases 2 y 3:
   - Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
 
