@@ -112,6 +112,7 @@ install.packages("ggplot2")
   - [Introduction to RNA-Seq using high-performance computing](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
   - [Liu et al. 2014. Bioinformatics](https://academic.oup.com/bioinformatics/article/30/3/301/228651)
   - [Curso RNA-seq](https://biocorecrg.github.io/RNAseq_course_2019)
+  - [Juego para aprender comandos de bash](https://web.mit.edu/mprat/Public/web/Terminus/Web/main.html)
 
 
 ### Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R 
