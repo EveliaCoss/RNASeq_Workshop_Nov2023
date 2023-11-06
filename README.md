@@ -106,7 +106,7 @@ install.packages("ggplot2")
   - [Aspectos generales de RNA-Seq](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#1)
   - [Control de calidad de los datos](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#41)
   - [Mis primeros pasos en Bash](https://eveliacoss.github.io/RNASeq_Workshop_Nov2023/Dia1_AspectosGenerales/Dia1_AspectosGenerales.html#60)
-- Grabación:
+- [Grabación](https://drive.google.com/file/d/1EALeLivrugnxMMJqttJVfGaUgxG9PNIO/view?usp=sharing)
 - Lecturas y cursos recomendados:
   - [Klaus, et al. 2015. EMBO](https://www.embopress.org/doi/full/10.15252/embj.201592958)
   - [Introduction to RNA-Seq using high-performance computing](https://hbctraining.github.io/Intro-to-rnaseq-hpc-salmon/lessons/experimental_planning_considerations.html)
