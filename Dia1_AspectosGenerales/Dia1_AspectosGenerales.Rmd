@@ -1013,7 +1013,7 @@ cd ../ # Ir a la carpeta anterior
 | `nano` / `vim` | Editores de texto plano |  `nano Archivo.txt`| 
 | `cp`     | Copiar archivos               |  `vim Archivo.txt`| 
 | `mv`     | Mover un archivo o carpeta    |  `cp Archivo1.txt /home/usuario/data/`| 
-| `echo`   | Para llamar y/o declarar variables | echo "Hello world" | 
+| `echo`   | Para llamar y/o declarar variables | `echo "Hello world"` | 
 | `chmod`  | Cambiar permisos del usuario  | `chmod 777 data/` | 
 | `rsync`  | Descargar o subir archivos    |  | 
 | `scp`    | Descargar o subir archivos    |  | 
@@ -1060,6 +1060,10 @@ Curso_RNASeq/ # directorio de trabajo donde nos localizamos
 
 # `rsync`:
 
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/rsync.png")
+```
+
 Descargar Información
 
 ```{bash, eval=F}
@@ -1072,6 +1076,93 @@ Subir Información
 rsync ./test.txt ecoss@liigh.unam.mx:"/mnt/Citosina/amedina/ecoss/"
 ```
 
+---
+# Consultar información sobre archivos y directorios
+
+```{bash, eval=F}
+ls -l
+```
+
+Van a obtener algo como esto:
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/permisos1.png")
+```
+
+---
+# Información contenida
+
+Cada columna en la salida anterior tiene un significado:
+
+```{r, echo=FALSE, out.width='80%', fig.align='center'}
+knitr::include_graphics("figures/permisos2.png")
+```
+
+---
+# Permisos
+
+Cada usuario tiene permisos diferentes cuando crea un archivo. Los permisos pueden modificarse con `chmod`.
+
+Los caracteres atribuidos a los permisos son:
+
+- `r` : escritura (Read)
+- `w` : lectura (Write)
+- `x` : ejecución (eXecute)
+
+En el siguiente ejemplo, el usuario cuenta con todos los permisos activos, mientras que el grupo y otros tienen solo permisos de lectura y ejecución.
+
+```{r, echo=FALSE, out.width='60%', fig.align='center'}
+knitr::include_graphics("figures/permisos3.png")
+```
 
 
+---
+# `chmod`: Cambiar permisos
 
+La representación octal de chmod es muy sencilla
+
+- `r` = Lectura tiene el valor de 4
+- `w` = Escritura tiene el valor de 2
+- `x` = Ejecución tiene el valor de 1
+
+.pull-left[
+
+| Permisos | Valor | Significado                  |
+|----------|-------|------------------------------|
+| rwx      |	7	   |Lectura, escritura y ejecución|
+| rw-	     |  6	   |Lectura, escritura            |
+| r-x	     |  5	   |Lectura y ejecución           |
+| r--	     |  4	   |Lectura                       |
+| -wx	     |  3	   |Escritura y ejecución         |
+| -w-	     |  2	   |Escritura                     |
+| --x	     |  1	   |Ejecución                     |
+| ---	     |  0	   |Sin permisos                  |
+
+]
+
+.pull-right[
+Por lo tanto:
+
+| Forma larga       	  |  Forma Octal| 
+|-----------------------|-------------|
+| chmod u=rwx,g=rwx,o=rx|	chmod 775   |
+| chmod u=rwx,g=rx,o=	  | chmod 760   |
+| chmod u=rw,g=r,o=r	  | chmod 644   |
+| chmod u=rw,g=r,o=	    | chmod 640   |
+| chmod u=rw,go=	      | chmod 600   |
+| chmod u=rwx,go=	      | chmod 700   |
+
+]
+
+---
+
+class: center, middle
+
+`r fontawesome::fa("code", height = "3em")`
+# Martes 7 de Noviembre 2023  
+## Diversos pipeline para Alineamiento, ensamblaje y conteo
+## Importar datos en R
+
+Instructora: Sofia Salazar
+
+Gracias por tu atención, respira y coméntame tus dudas. 
