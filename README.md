@@ -117,6 +117,7 @@ install.packages("ggplot2")
 
 ### Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R 
 
+[LINK PARA REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjlhN2FhODUtNTlkOC00MDYwLTkxNGEtY2ZjZjg4ZjU0YTgw%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
 - Fecha: Martes 7 de Noviembre 2023
 - Instructora: Sofia Salazar
 - Presentación:
