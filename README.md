@@ -130,6 +130,13 @@ install.packages("ggplot2")
   - [Manual Trimmomatic](http://www.usadellab.org/cms/uploads/supplementary/Trimmomatic/TrimmomaticManual_V0.32.pdf)
   - [STAR Github](https://github.com/alexdobin/STAR)
 
+**NOTA:** Se menciono el pseudoalineamiento, en este curso no se dara, pero si quieres conocer mas puedes checar los siguientes link:
+- [Kallisto web page](https://pachterlab.github.io/kallisto/about.html)
+- [Manual Kallisto](https://pachterlab.github.io/kallisto/manual)
+- [Evelia - Practica con Kallisto](https://github.com/EveliaCoss/RNAseq_classFEB2023/tree/main/RNA_seq#practica-2---ensamblaje-con-el-transcriptoma-de-referencia-kallisto-)
+- [Evelia - Presentacion](https://github.com/EveliaCoss/RNAseq_classFEB2023/blob/149ae3f12e30366c982f3cc3418d00af0b1658c1/RNA_seq/slides/D3_Normalizacion_batch_sesion.pdf)
+- [Curso - 4. Alignment Free Expression Estimation (Kallisto)](https://github.com/griffithlab/rnaseq_tutorial_wiki/blob/master/Kallisto.md)
+
 ### Dia 3. Trabajando con datos de RNA-seq de distintas fuentes en R
 
 - Fecha: Miercoles 8 de Noviembre 2023
