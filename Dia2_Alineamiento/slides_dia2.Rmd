@@ -201,7 +201,7 @@ class: inverse, center, middle
 
 Este es un formato de archivo que va contener:
 
-- La sequencia de, en este caso, RNA que se sequenció
+- La sequencia nucleotídica, en este caso, RNA que se sequenció
 
 - La calidad (Q) del "llamado" de cada una de las bases nitrogenadas **(Phred Score)**, codificada en ASCII.
 
@@ -539,17 +539,6 @@ Es recomendado utilizar lecturas Paired End
 
 ---
 
-## ¿Qué es un archivo de anotación?
-
-- Un archivo de anotación GFF (General Feature File) es un formato de archivo estándar utilizado en bioinformática para almacenar y representar información genómica y de anotación para diversas características dentro de un genoma, como genes, transcritos, exones y otros elementos genómicos.
-
-**Utilizamos estos archivos junto al genoma de referencia para poder encontrar ubicaciones de genes, transcritos etc**
-
-- Los archivos GFF pueden venir en diferentes versiones, siendo GFF3 uno de los formatos más utilizados.
-
-Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para humanos y ratones [aquí](www.gencodegenes.org)
----
-
 # En esta clase utilizaremos el software de alineamiento **STAR**, de tipo alineamiento a genoma de referencia
 
 #### Seguiremos 2 sencillos pasos
@@ -559,6 +548,22 @@ Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para 
 2. Alinear y contar con STAR
 
 [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)
+
+**STAR** nos permite, además de alinear las lecturas, hacer un conteo en el mismo paso. El paso de conteo, puede ser separado y con otras herramientas, pero en esta clase, te enseñaré la forma muy sencilla en la que STAR también puede contar.
+
+**PARA PODER CONTAR, NECESITAMOS UN ARCHIVO DE ANOTACIÓN**
+---
+
+## ¿Qué es un archivo de anotación?
+
+- Un archivo de anotación GFF (General Feature File) es un formato de archivo estándar utilizado en bioinformática para almacenar y representar información genómica y de anotación para diversas características dentro de un genoma, como genes, transcritos, exones y otros elementos genómicos.
+
+**Utilizamos estos archivos junto al genoma de referencia para poder encontrar ubicaciones de genes, transcritos etc**
+
+- Los archivos GFF pueden venir en diferentes versiones, siendo GFF3 uno de los formatos más utilizados.
+
+Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para humanos y ratones [aquí](www.gencodegenes.org)
+
 ---
 
 ## ¿Qué es indexar un genoma de referencia
@@ -602,7 +607,9 @@ Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia
 
 ---
 
-## 2. Alinear con STAR
+## 2. Alinear y **CONTAR** con STAR
+
+Si revisamos el [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) notarás que hay una opción para **Contar lecturas por genes** (Sección 8). Con la opción de `--quantMode`. De hecho, estas cuentas coinciden con las cuentas que nos daría `htseq-count`
 
 ```{bash, eval = F}
 index=/mnt/Citosina/amedina/ssalazar/claseSTAR/STAR_index

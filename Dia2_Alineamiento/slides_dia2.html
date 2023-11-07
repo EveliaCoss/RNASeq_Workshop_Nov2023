@@ -1611,7 +1611,7 @@ background-color: inherit;
 })(window, document)
 </script>
     <script id="xaringanExtra-webcam-options" type="application/json">{"width":"200","height":"200","margin":"1em"}</script>
-    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"x1e42803a3d04896968e4048217baba7","expires":1}</script>
+    <script type="application/json" id="xaringanExtra-editable-docid">{"id":"xf0f70e91bbe4f93abcaeee52724265e","expires":1}</script>
     <script>(function(f){if(typeof exports==="object"&&typeof module!=="undefined"){module.exports=f()}else if(typeof define==="function"&&define.amd){define([],f)}else{var g;if(typeof window!=="undefined"){g=window}else if(typeof global!=="undefined"){g=global}else if(typeof self!=="undefined"){g=self}else{g=this}g.himalaya = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 'use strict';
 
@@ -4081,7 +4081,7 @@ class: inverse, center, middle
 
 Este es un formato de archivo que va contener:
 
-- La sequencia de, en este caso, RNA que se sequenció
+- La sequencia nucleotídica, en este caso, RNA que se sequenció
 
 - La calidad (Q) del &quot;llamado&quot; de cada una de las bases nitrogenadas **(Phred Score)**, codificada en ASCII.
 
@@ -4434,17 +4434,6 @@ Es recomendado utilizar lecturas Paired End
 
 ---
 
-## ¿Qué es un archivo de anotación?
-
-- Un archivo de anotación GFF (General Feature File) es un formato de archivo estándar utilizado en bioinformática para almacenar y representar información genómica y de anotación para diversas características dentro de un genoma, como genes, transcritos, exones y otros elementos genómicos.
-
-**Utilizamos estos archivos junto al genoma de referencia para poder encontrar ubicaciones de genes, transcritos etc**
-
-- Los archivos GFF pueden venir en diferentes versiones, siendo GFF3 uno de los formatos más utilizados.
-
-Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para humanos y ratones [aquí](www.gencodegenes.org)
----
-
 # En esta clase utilizaremos el software de alineamiento **STAR**, de tipo alineamiento a genoma de referencia
 
 #### Seguiremos 2 sencillos pasos
@@ -4454,6 +4443,22 @@ Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para 
 2. Alinear y contar con STAR
 
 [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf)
+
+**STAR** nos permite, además de alinear las lecturas, hacer un conteo en el mismo paso. El paso de conteo, puede ser separado y con otras herramientas, pero en esta clase, te enseñaré la forma muy sencilla en la que STAR también puede contar.
+
+**PARA PODER CONTAR, NECESITAMOS UN ARCHIVO DE ANOTACIÓN**
+---
+
+## ¿Qué es un archivo de anotación?
+
+- Un archivo de anotación GFF (General Feature File) es un formato de archivo estándar utilizado en bioinformática para almacenar y representar información genómica y de anotación para diversas características dentro de un genoma, como genes, transcritos, exones y otros elementos genómicos.
+
+**Utilizamos estos archivos junto al genoma de referencia para poder encontrar ubicaciones de genes, transcritos etc**
+
+- Los archivos GFF pueden venir en diferentes versiones, siendo GFF3 uno de los formatos más utilizados.
+
+Podemos encontrar estos archivos en bases de datos genómicas como GENCODE para humanos y ratones [aquí](www.gencodegenes.org)
+
 ---
 
 ## ¿Qué es indexar un genoma de referencia
@@ -4500,7 +4505,9 @@ Mira [aquí](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia
 
 ---
 
-## 2. Alinear con STAR
+## 2. Alinear y **CONTAR** con STAR
+
+Si revisamos el [Manual de STAR](https://github.com/alexdobin/STAR/blob/master/doc/STARmanual.pdf) notarás que hay una opción para **Contar lecturas por genes** (Sección 8). Con la opción de `--quantMode`. De hecho, estas cuentas coinciden con las cuentas que nos daría `htseq-count`
 
 
 ```bash
