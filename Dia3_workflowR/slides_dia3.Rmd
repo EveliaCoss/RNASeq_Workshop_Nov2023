@@ -270,7 +270,7 @@ head(counts, 2)
 
 ```{r, eval = F}
 dim(counts)
-# [1] 129239      4
+# [1] 129239      8
 ```
 
 ---
@@ -377,7 +377,7 @@ Recurso muy útil para descargar datos procesados de RNA-seq. Especialmente, es 
 
 - Con un total de 8679 estudios de humano y 10088 de ratón. 
 
-- Además, cuenta con un paquete de R/Bioconductor, que nos perimeta además accesar a los metadatos de los estudios.
+- Además, cuenta con un paquete de R/Bioconductor, que nos perimte además accesar a los metadatos de los estudios.
 
 - Tiene una interfaz gráfica para explorar los estudios disponibles [aquí](https://jhubiostatistics.shinyapps.io/recount3-study-explorer/), la documentación está [aquí](https://rna.recount.bio/docs/)
 
