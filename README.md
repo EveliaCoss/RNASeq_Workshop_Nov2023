@@ -144,11 +144,13 @@ install.packages("ggplot2")
 
 - Fecha: Miercoles 8 de Noviembre 2023
 - Instructora: Sofia Salazar
+- [Grabación](https://drive.google.com/file/d/1c9K4Z2twnaEwNpMBswZKkNND2R27jmN-/view?usp=sharing)
 - Para las clases 2 y 3:
   - Vease el [README](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/tree/main/Dia2_Alineamiento) de la clase para más información
 
 ### Dia 4. Normalización y Corrección por batch / DEG con DESeq2 y edgeR 
 
+[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_Nzg0YzNlNjMtMTVkZS00NjQwLWE1MmMtOTg3OTg5NTVlYWNj%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
 - Fecha: Jueves 9 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
@@ -157,6 +159,7 @@ install.packages("ggplot2")
 
 ### Dia 5. GSEA - Análisis funcional
 
+[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZjdjZmViOWItNzgyYy00MTM3LWI2NmQtMTc1MzQzMmVhMWE2%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
 - Fecha: Viernes 10 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
