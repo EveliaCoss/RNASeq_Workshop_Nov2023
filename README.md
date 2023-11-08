@@ -140,6 +140,8 @@ install.packages("ggplot2")
 
 ### Dia 3. Trabajando con datos de RNA-seq de distintas fuentes en R
 
+[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_YzcwOTdmMzUtY2Y4ZC00NjQwLTk2NGEtODA1OWIwMDFhMmM0%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
+
 - Fecha: Miercoles 8 de Noviembre 2023
 - Instructora: Sofia Salazar
 - Para las clases 2 y 3:
