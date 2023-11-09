@@ -151,6 +151,8 @@ install.packages("ggplot2")
 ### Dia 4. Normalización y Corrección por batch / DEG con DESeq2 y edgeR 
 
 [LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_Nzg0YzNlNjMtMTVkZS00NjQwLWE1MmMtOTg3OTg5NTVlYWNj%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
+
+[link2](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZTQ0OThmNDAtNjBiYS00YmZhLTk0YjItZTBmMjY5ZWUzMTU3%40thread.v2/0?context=%7b%22Tid%22%3a%226497bc6d-7e82-48c2-b571-9e9489ce1a4c%22%2c%22Oid%22%3a%228db4ec30-f207-4478-8684-e20ccce37eb5%22%7d)
 - Fecha: Jueves 9 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
