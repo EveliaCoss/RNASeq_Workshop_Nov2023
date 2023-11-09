@@ -116,7 +116,6 @@ install.packages("ggplot2")
 
 ### Dia 2. Diversos pipeline para Alineamiento, ensamblaje y conteo / Importar datos en R 
 
-[LINK PARA REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_MjlhN2FhODUtNTlkOC00MDYwLTkxNGEtY2ZjZjg4ZjU0YTgw%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
 - Fecha: Martes 7 de Noviembre 2023
 - Instructora: Sofia Salazar
 - [Grabación](https://drive.google.com/file/d/17kYVEjt2RQGbH180GPZB4CvUAJmPexnI/view?usp=drive_link)
@@ -159,7 +158,7 @@ install.packages("ggplot2")
 
 ### Dia 5. GSEA - Análisis funcional
 
-[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_ZjdjZmViOWItNzgyYy00MTM3LWI2NmQtMTc1MzQzMmVhMWE2%40thread.v2/0?context=%7b%22Tid%22%3a%225f282910-176f-459d-ab7d-b744aa6efc07%22%2c%22Oid%22%3a%2251157ae0-b0ce-4989-995e-f74bec8217e9%22%7d)
+[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NGYzMTJjNTItMWZiMi00ZmZmLTg5NTAtNTYwZmMwMWQ3NTgw%40thread.v2/0?context=%7b%22Tid%22%3a%226497bc6d-7e82-48c2-b571-9e9489ce1a4c%22%2c%22Oid%22%3a%228db4ec30-f207-4478-8684-e20ccce37eb5%22%7d)
 - Fecha: Viernes 10 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
