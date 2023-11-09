@@ -154,7 +154,7 @@ install.packages("ggplot2")
 - Instructora: Diego Ramirez
 - Presentación:
 - [Grabación parte 1](https://drive.google.com/file/d/14FPkrrSHxiw_30uZvSU6V6ebMrgfjbFQ/view?usp=sharing)
-- Grabación parte 2
+- [Grabación parte 2](https://drive.google.com/file/d/171qB-PVBQ__b5iQ_WHsroGZj0LxS643l/view?usp=sharing)
 - Lecturas y cursos recomendados:
 
 ### Dia 5. GSEA - Análisis funcional
