@@ -156,7 +156,8 @@ install.packages("ggplot2")
 - Fecha: Jueves 9 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
-- Grabación:
+- [Grabación parte 1](https://cinvestav365-my.sharepoint.com/:v:/g/personal/evelia_coss_cinvestav_mx/EeKvZ0bB93ZBmidYgQMFOhkBINSlaAHL9DG3WnKL-RzQTg?e=VbWbTj&nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZyIsInJlZmVycmFsQXBwUGxhdGZvcm0iOiJXZWIiLCJyZWZlcnJhbE1vZGUiOiJ2aWV3In19)
+- Grabación parte 2
 - Lecturas y cursos recomendados:
 
 ### Dia 5. GSEA - Análisis funcional
