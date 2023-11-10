@@ -1,0 +1,168 @@
+---
+title: "GSEA"
+author: "Diego Ramirez Espinosa"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+#Cambio de nombres de genes
+Primero necesitamos cambiar los nombres de los genes a una anotación que pueda ser identificada correctamente por el software, en este caso queremos convertir nuestros transcritos y nombres de proteina en IDs de ENSEMBL para genes
+
+
+```{r, eval = F}
+#Este codigo es para otras comparaciones, creando objetos res nuevos
+res <- results(dds_filtered, contrast = c("condition", "LPS_15", "LPS_4h"))
+res <- na.omit(res)
+if (any(is.na(row.names(res)))){
+  row.names(res) <- 1:nrow(res)
+}
+```
+
+```{r, eval = F}
+#BiocManager::install("biomaRt")
+library(biomaRt)
+#devtools::install_version("dbplyr", version = "2.3.4")
+DF <- as.data.frame(res)
+DF <- tibble::rownames_to_column(DF, "ID")
+name_short <- function(table){
+  table$ID <- gsub("\\..*","",table$ID)
+  return(table)
+}
+
+DF <- name_short(DF)
+res@rownames <- DF$ID
+
+mart <- useMart(biomart="ensembl", dataset="mmusculus_gene_ensembl")
+genes <- getBM(attributes = c("ensembl_gene_id", "uniprotswissprot"), 
+                          values = DF$ID,
+                          mart = mart)
+
+names(genes)[1] <- "ID"
+names(genes)[2] <- "gene_name"
+```
+
+Este codigo filtra el dataset genes por solamente aquellos nombres de proteinas asociados a un ID, ya que los que los ID sin un nombre de proteina asociado significan no haber estado en nuestra variable res.
+```{r, eval =F}
+res@rownames[res@rownames %in% genes[,2]] <- genes$ID[which(res@rownames %in% genes[,2])]
+res@rownames
+```
+
+
+Este codigo podria servir para cambiar de ID de transcrito a ID de gen
+```{r, eval=F}
+genesT <- getBM(attributes = c("ensembl_gene_id", "ensembl_transcript_id"), 
+                          values = DF$ID,
+                          mart = mart)
+
+names(genesT)[1] <- "ID"
+names(genesT)[2] <- "gene_name"
+```
+
+```{r, eval =F}
+res@rownames[res@rownames %in% genesT[,2]] <- genesT$ID[which(res@rownames %in% genesT[,2])]
+res@rownames
+```
+
+#Preparar input
+
+Para comenzar se tiene que cargar el csv cn la informacion de los resultados de DESeq2
+
+```{r, eval = F}
+resGSEA <- res[order(-res$log2FoldChange),] #Le pido que me ordene los genes de mayor a menos por log2FoldChange
+resGSEA
+```
+
+```{r, eval = F}
+gene_list <- resGSEA$log2FoldChange #Creo la lista de genes a partir de mayor a menos log2FoldChange
+original_gene_list <- res$log2FoldChange
+names(gene_list) <- rownames(res) #Le da el mismo nombre de columnas que nuestros genes
+gene_list
+```
+
+#Gene Set Enrichment
+Aqui se realiza un analisis de enriquecimiento de terminos GO.
+
+```{r, eval =F}
+library(clusterProfiler)
+#keytypes(org.Mm.eg.db)
+gse <- gseGO(gene_list, ont = "ALL", keyType = "ENSEMBL", OrgDb = "org.Mm.eg.db", eps = 1e-300)
+as.data.frame(gse)
+```
+
+```{r}
+require(DOSE)
+dotplot(gse, showCategory=10, split=".sign", font.size=5) + facet_grid(.~.sign)
+```
+Lo que veo es que en mi control se encuentra suprimida la respuesta inmune comparada con la respuesta que vemos en LPS a 4 horas.
+
+Tambien podemos evaluar los links entre nuestros genes y conceptos biológicos (términos GO o KEGG pathways) como un red. 
+
+```{r}
+cnetplot(gse, categorySize="pvalue", foldChange=gene_list, showCategory = 6)
+```
+
+Podemos observar en general respuesta relacionada a metabolismo celular, particularmente respiración
+
+```{r}
+library(ggplot2)
+ridgeplot(gse) + labs(x = "enrichment distribution") + theme(text = element_text(size=1)) + theme_minimal()
+```
+
+Podemos observar en el eje x los cambios en el logFoldChange y en el y los GO relacionados, en general veos que los mayores cambios estan presentes en cosas relacionadas a metabolismo
+
+```{r}
+gseaplot(gse, by = "all", title = gse$Description[1], geneSetID = 1)
+```
+El punto mas alto es mi enrochment score y la altura es una visualizacionde cuan enriquecido esta mi lista de genes
+
+```{r}
+library(enrichplot)
+terms <- gse$Description[1:3]
+pmcplot(terms, 2010:2018, proportion=FALSE)
+```
+Aqui vemos la tendencia de publicaciones en PubMed correspondientes a mis GO mas importantes durante cierto periodo de tiempo.
+
+```{r}
+library(DOSE)
+# Convert gene IDs for gseKEGG function
+# We will lose some genes here because not all IDs will be converted
+ids<-bitr(names(original_gene_list), fromType = "ENSEMBL", toType = "ENTREZID", OrgDb="org.Mm.eg.db")
+ # remove duplicate IDS (here I use "ENSEMBL", but it should be whatever was selected as keyType)
+dedup_ids = ids[!duplicated(ids[c("ENSEMBL")]),]
+
+# Create a new dataframe df2 which has only the genes which were successfully mapped using the bitr function above
+df2 = res[rownames(res) %in% dedup_ids$ENSEMBL,]
+
+# Create a new column in df2 with the corresponding ENTREZ IDs
+df2$Y = dedup_ids$ENTREZID
+
+# Create a vector of the gene unuiverse
+kegg_gene_list <- df2$log2FoldChange
+
+# Name vector with ENTREZ ids
+names(kegg_gene_list) <- df2$Y
+
+# omit any NA values 
+kegg_gene_list<-na.omit(kegg_gene_list)
+
+# sort the list in decreasing order (required for clusterProfiler)
+kegg_gene_list = sort(kegg_gene_list, decreasing = TRUE)
+```
+
+```{r}
+kegg_organism = "dme"
+kk2 <- gseKEGG(geneList     = kegg_gene_list,
+               organism     = kegg_organism,
+               nPerm        = 10000,
+               minGSSize    = 3,
+               maxGSSize    = 800,
+               pvalueCutoff = 0.05,
+               pAdjustMethod = "none",
+               keyType       = "ncbi-geneid")
+```
+
+
+
+
+
+
