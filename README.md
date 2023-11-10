@@ -149,7 +149,7 @@ install.packages("ggplot2")
 
 - Fecha: Jueves 9 de Noviembre 2023
 - Instructora: Diego Ramirez
-- Presentación:
+- Presentación: [DEG y Normalizacion de datos](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia4_ExpresionDiferencial/Normalizacio%CC%81n_Batch_DSeq2.pptx)
 - [Grabación parte 1](https://drive.google.com/file/d/14FPkrrSHxiw_30uZvSU6V6ebMrgfjbFQ/view?usp=sharing)
 - [Grabación parte 2](https://drive.google.com/file/d/171qB-PVBQ__b5iQ_WHsroGZj0LxS643l/view?usp=sharing)
 - Lecturas y cursos recomendados:
@@ -160,6 +160,9 @@ install.packages("ggplot2")
 - Fecha: Viernes 10 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
+    - [GSEA - Diego](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia5_AnalisisFuncional/GSEA.pptx)
+    - [GSEA - Evelia](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia5_AnalisisFuncional/D5_GSEA_sesion.pptx)  
+- Practica: [clase.Rmd](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia4_ExpresionDiferencial/clase.Rmd)
 - Grabación:
 - Lecturas y cursos recomendados:
 
