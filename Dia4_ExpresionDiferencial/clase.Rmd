@@ -1,0 +1,326 @@
+---
+title: "RNA-Seq analysis"
+author: "Diego Ramirez Espinosa"
+date: "`r Sys.Date()`"
+output:
+  pdf_document: default
+  html_document: default
+---
+
+Primero tenemos que cargar las librerias que vamos a usar, en el caso de no tenerlas instaladas se puede usar BiocManager::install("libreria_que_quieres_instalar")
+
+```{r, eval =F}
+library(DESeq2)
+library(GenomicFeatures)
+library(GenomicAlignments)
+library(org.Mm.eg.db)
+library(vsn)
+library(pheatmap)
+library(limma)
+library(AnnotationDbi)
+```
+
+
+##Descargo los datos y los preparo
+
+```{r, eval = F}
+counts <- read.csv("/Users/diegoramirez/Documents/clase/data/raw_counts.csv") #Leemos el csv con las cuentas
+load("/Users/diegoramirez/Documents/clase/data/raw_counts.RData") #Cargamos el Rmd de las cuentas
+counts <- counts[5:129239, ] #Filtramos los rows con informacion general sobre el mapeo
+counts <- counts[which(rowSums(counts) > 10),] #Filtramos los
+condition <- c("control", "control", "LPS_15", "LPS_15", "LPS_30", "LPS_30", "LPS_4h", "LPS_4h") #Se determinan las condiciones en el mismo orden que nuestras muestras
+coldata <- data.frame(row.names = colnames(counts), condition) #Se hace un data frame con la informacion de las muestras
+```
+
+
+##Creo el objeto dds a partir de la matriz de cuenta.
+
+Hay varias formas de crear objetos DESeq y cambia el método dependiendo del output que le estamos dando, en este caso lo creamos a partir de una matriz.
+
+```{r, eval = F}
+dds <- DESeqDataSetFromMatrix(countData =  counts, colData <- coldata, design = ~condition) #Se hace un DESeqDataSet para realizar un analisis
+#dds$condition <- factor(dds$condition, levels = c("control","LPS_15", "LPS_30", "LPS_4h"))
+dds$condition <- relevel(dds$condition, ref = "control") #Si no se indica de manera explicita que se va a comparara, lo va a tomar de manera alfabetica, en este caso se indica que control es la referencia, al ser factores se compara la referencia con el ultimo nivel del diseño (en este caso condition) que es LPS_4h
+#dds$condition <- relevel(dds$condition, ref = "LPS_15")
+#dds$condition <- relevel(dds$condition, ref = "LPS_30")
+```
+
+##Realizo el metodo de expresion diferencial.
+
+Se realiza el metodo DESeq.
+Se puede hacer una normalizacion de los datos antes de obtener los resultados.
+
+```{r, eval = F}
+dds <- DESeq(dds)
+```
+
+
+##Analisis obsevatorio de los datos y calidad.
+
+Uno de los primeros diagnosticos que podemos hacer es un PCA, esto nos permite ver si nuestras replicas se comportan como esperamos, en este caso esperamos ver diferencias entre el control y los otros intervalos de tiempo.
+
+Para hacer el PCA tenemos que hacer una transformacion vst de los datos, adicionalmente podemos realizar varias transformaciones para normalizar los datos y visualizar los efectos de estas transformaciones en la varianza.
+
+```{r, eval = F}
+#BiocManager::install("vsn")
+ntd <- normTransform(dds)
+ddslog <- rlog(dds, blind = F) #Normalizacion de las cuentas por logaritmo y podrias hacer el analisis usando este objeto en lugar del dds
+vsdata <- vst(dds, blind =F) #Estima la tendencia de dispersion de los datos y calcula la varianza, hace una normalizacion de las cuentas con respecto al tamaño de la libreria
+plotPCA(ddslog, intgroup = "condition")
+```
+
+En la grafica de las primeras dos componentes principales son notorias las diferencias entre tipos de muestras con respecto a las componente principales que capturan su varianza, cada componente principal representa una combinacion lineal de las variables (en este caso genes) que explican la mayor cantidad de varianza en nuestros datos (las cuentas).
+
+
+También podemos evaluar la desviación estándar 
+```{r, eval =F}
+meanSdPlot(assay(vsdata))
+```
+
+```{r, eval = F}
+meanSdPlot(assay(ddslog))
+```
+
+```{r, eval = F}
+meanSdPlot(assay(ntd))
+```
+
+Igualmente podemos hacer un heatmap para ver las diferencias en la expresión de las condiciones de una forma más visual.
+
+```{r, eval =F}
+select <- order(rowMeans(counts(dds, normalized = T)), decreasing = T)[1:20] #Se tiene que hacer la funcion counts en un objeto que no rea results o transformes (no el results(dds) ni el rlog/vst(dds))
+df <- as.data.frame(colData(dds)[,c("condition")])
+
+#heatmap
+pheatmap(assay(ddslog[select,], cluster_rows=FALSE, show_rownames=F,
+               cluster_cols=F, annotation_col=df))
+```
+
+```{r, eval = F}
+counts(dds[rownames(dds) == "Q9MD68"]) #Vemos el numero de counts
+counts(dds[rownames(dds) == "Q7JCZ3"])
+counts(dds[rownames(dds) == "Q5M9K1"])
+```
+
+```{r, eval =F}
+counts(dds[rownames(dds) == "Q4JFN6"]) 
+```
+
+
+Podemos observar que hay tres genes con una expresion importante presente en todas las muestras, además hay dos genes (Q05769 y Q3UPN1) que estan subexpresados al principio pero comienzan a tener una expresion mayor a partir de los 30 minutos de exposicion a LPS, de la misma forma vemos 6 genes mas que se encuentran expresados de forma un poco mas significativa en las muestras a cuatro horas de exposiciona LPS:
+- Q9QYB1
+- Q05769
+- Q7JCY6
+- Q9MD59
+- Q9MD82
+- Q4JFN6
+
+El codigo que sigue filtra los tres genes que se ven expresados de forma importante en todas las muestras.
+```{r, eval = F}
+dds_filtered <- dds[which(rownames(dds) != "Q9MD68")]
+dds_filtered <- dds_filtered[which(rownames(dds_filtered) != "Q5M9K1")]
+dds_filtered <- dds_filtered[which(rownames(dds_filtered) != "Q7JCZ3")]
+ddslog_filtered <- rlog(dds_filtered, blind = F)
+
+select <- order(rowMeans(counts(dds_filtered, normalized = F)), decreasing = T)[1:20]
+df <- as.data.frame(colData(dds_filtered)[,c("condition")])
+pheatmap(assay(ddslog_filtered[select,], cluster_rows=FALSE, show_rownames=F,
+               cluster_cols=F, annotation_col=df))
+```
+
+Removiendo dichos genes podemos observar de forma mas clara las diferencias entre los genes anteriormente mencionados como expresados en las muestras luego de 4 horas de exposicion a LPS y las muestras en intervalos de tiempo menores, en este caso es notoria la expresion constante en las muestras aunque va incrementando conforme el tiempo de exposicion aumenta.
+
+##Batch effect removal.
+
+```{r, eval =F}
+counts_log <- rlog(counts(dds_filtered)) #Esto para hacerlo con counts log transformed
+group <- colData(dds_filtered)$condition #Se colocan como grupo las condiciones
+batch <- factor(c(1,2,1,2,1,2,1,2)) #Este es un ejemplo de como se define el batch, 
+head(counts_log)
+#head(counts(dds_filtered))
+```
+
+```{r, eval = F}
+#counts_noBatch <- removeBatchEffect(counts(dds_filtered), batch = batch)
+counts_noBatch <- removeBatchEffect(counts_log, batch = batch, group = group)
+head(counts_noBatch)
+```
+
+```{r, eval =F}
+counts_noBatch <- round(counts_noBatch) #Round hace los valores de las cuentas enteros
+counts_noBatch <- counts_noBatch[!apply(counts_noBatch, 1, function(row) any(row < 0)), ] #Filtra rows con al menos un valor negativo entre las columnas
+dds_filtNObatch <- DESeqDataSetFromMatrix(counts_noBatch, colData = coldata, design = ~condition)
+dds_filtNObatch
+```
+
+Ya tenemos un objeto dds filtrado y corregido por batch effect, podemos hacer el analisis exploratorio como lo hicimos
+
+```{r, eval = F}
+dds_filtNObatchlog <- rlog(dds_filtNObatch, blind = F)
+plotPCA(dds_filtNObatchlog, intgroup = "condition")
+```
+
+
+```{r, eval =F}
+select <- order(rowMeans(counts(dds_filtNObatch, normalized = F)), decreasing = T)[1:20]
+df <- as.data.frame(colData(dds_filtNObatch)[,c("condition")])
+pheatmap(assay(dds_filtNObatchlog[select,], cluster_rows=FALSE, show_rownames=F,
+               cluster_cols=F, annotation_col=df))
+```
+
+
+
+##Obtengo los resultados.
+
+```{r, eval = F}
+res <- results(dds_filtered, contrast = c("condition", "LPS_4h", "control")) #Results tables are generated using the function results, which extracts a results table with log2 fold changes, p values and adjusted p values, contrast sirve para especificar que niveles se van a comparar.
+res15 <- results(dds_filtered, contrast = c("condition", "LPS_15", "control"))
+res30 <- results(dds_filtered, contrast = c("condition", "LPS_30", "control"))
+res <- na.omit(res) #Quitamos los genes sin un padj calculado.
+res15 <- na.omit(res15) 
+res30 <- na.omit(res30) 
+res
+```
+
+Aqui podemos observar los cambios en el log2foldchange que son atribuibles a una variable dada 
+
+```{r, eval =F}
+plotMA(res15, main = "control vs 15 minutos", ylim = c(-2, 2))
+```
+
+```{r, eval = F}
+plotMA(res30, main = "control vs 30 minutos", ylim = c(-2, 2))
+```
+
+```{r, eval = F}
+plotMA(res, main = "control vs 4 horas", ylim = c(-2, 2))
+```
+
+##Anotacion de los genes con ENSEMBL
+
+```{r, eval = F}
+#BiocManager::install("biomaRt")
+library(biomaRt)
+#devtools::install_version("dbplyr", version = "2.3.4")
+DF <- as.data.frame(res)
+DF <- tibble::rownames_to_column(DF, "ID")
+name_short <- function(table){
+  table$ID <- gsub("\\..*","",table$ID) #gsub busca patrones, en este caso va a sustituir todo lo que este despues del punto  con un "", es decir, con vacio.
+  return(table)
+}
+
+DF <- name_short(DF) #Aplicas la funcion a los nombres de los genes
+res@rownames <- DF$ID
+
+mart <- useMart(biomart="ensembl", dataset="mmusculus_gene_ensembl")
+genes <- getBM(attributes = c("ensembl_gene_id", "uniprotswissprot"), 
+                          values = DF$ID,
+                          mart = mart)
+
+names(genes)[1] <- "ID"
+names(genes)[2] <- "gene_name"
+```
+
+Este codigo filtra el dataset genes por solamente aquellos nombres de proteinas asociados a un ID, ya que los que los ID sin un nombre de proteina asociado significan no haber estado en nuestra variable res.
+```{r, eval =F}
+res@rownames[res@rownames %in% genes[,2]] <- genes$ID[which(res@rownames %in% genes[,2])]
+res@rownames
+```
+
+Este codigo podria servir para cambiar de ID de transcrito a ID de gen
+```{r, eval=F}
+genesT <- getBM(attributes = c("ensembl_gene_id", "ensembl_transcript_id"), 
+                          values = DF$ID,
+                          mart = mart)
+
+names(genesT)[1] <- "ID"
+names(genesT)[2] <- "gene_name"
+```
+
+
+```{r, eval =F}
+res@rownames[res@rownames %in% genesT[,2]] <- genesT$ID[which(res@rownames %in% genesT[,2])]
+res@rownames
+```
+
+##Ver genes Diferencialmente expresados
+
+Es importante notar que tenemos pvalue p-adjusted value, en este caso es mas importante el ajustado debido a que tenemos una cantidad de test alta (en este caso la cantidad de genes) por lo que el p ajustado es el que nos importa, tenemos que filtrar las cosas por lo que nos interesa, por lo que tenemos que quitar los NA e interesarnos solo por los genes que son muy significantes.
+
+```{r, eval = F}
+sgenes <- na.omit(res) #Se hace un subset unicamente para aislar los genes diferencialmente expresados.
+sgenes <- sgenes[sgenes$padj < 0.05, ]
+sgenes
+```
+
+
+Se hace filtrado de los genes con una expresion mayor.
+
+```{r, eval = F}
+sgenes_UP <- subset(sgenes, log2FoldChange >= 0.6)
+sgenes_UP
+```
+
+Se hace filtrado de los genes con una expresion menor.
+
+```{r, eval = F}
+sgenes_DOWN <- subset(sgenes, log2FoldChange <= -0.6)
+sgenes_DOWN
+```
+
+Queremos hacer una visualizacion de los genes por medio de un volcano plot, para hacer neceso necesitamos crear un dataset que contenga la informacion del DESeq hecho junto con columnas que les asignen nombres para etiquetarlos.
+
+
+##Visualzacion con Volcano Plot
+
+```{r, eval =F}
+volcanodf <- as.data.frame(res) #hacemos un dataframe con todos los genes 
+volcanodf$label <- "NO"
+volcanodf$label[volcanodf$log2FoldChange >= 1 & volcanodf$pvalue < 0.05] <- "UP"
+volcanodf$label[volcanodf$log2FoldChange <= -1 & volcanodf$pvalue < 0.05] <- "DOWN"
+volcanodf$names <- "NA" #Create a column to save the names of the genes
+filter <- which(volcanodf$label != "NO" & volcanodf$padj < 0.05 & (volcanodf$log2FoldChange >= 1 | volcanodf$log2FoldChange <= -1))
+volcanodf$names[filter] <- rownames(volcanodf)[filter]
+```
+
+Hacemos el volcano plot.
+
+```{r, eval = F}
+#install.packages("tidyverse")
+library(tidyverse)
+library(ggrepel)
+#library(conflicted)
+library(dplyr)
+png(file = "volcano.png", width = 1000, height = 1000) #Guardar plot en formato pdf
+ggplot(data = volcanodf, aes(x=log2FoldChange, y =-log10(pvalue), col=label, label=names)) + 
+  geom_point() +
+  scale_color_manual(values = c("blue", "black", "red")) + #cambiar colores de los puntos.
+  theme_minimal() +
+  geom_text_repel(nudge_x = 0.6, nudge_y = 0.1, direction = "x", 
+                  max.overlaps = getOption("ggrepel.max.overlaps", default = 3)) +
+  xlim(-15,15)
+dev.off()
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
