@@ -156,14 +156,13 @@ install.packages("ggplot2")
 
 ### Dia 5. GSEA - Análisis funcional
 
-[LINK DE REUNIÓN](https://teams.microsoft.com/l/meetup-join/19%3ameeting_NGYzMTJjNTItMWZiMi00ZmZmLTg5NTAtNTYwZmMwMWQ3NTgw%40thread.v2/0?context=%7b%22Tid%22%3a%226497bc6d-7e82-48c2-b571-9e9489ce1a4c%22%2c%22Oid%22%3a%228db4ec30-f207-4478-8684-e20ccce37eb5%22%7d)
 - Fecha: Viernes 10 de Noviembre 2023
 - Instructora: Diego Ramirez
 - Presentación:
     - [GSEA - Diego](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia5_AnalisisFuncional/GSEA.pptx)
     - [GSEA - Evelia](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia5_AnalisisFuncional/D5_GSEA_sesion.pptx)  
 - Practica: [clase.Rmd](https://github.com/EveliaCoss/RNASeq_Workshop_Nov2023/blob/main/Dia4_ExpresionDiferencial/clase.Rmd)
-- Grabación:
+- [Grabación](https://drive.google.com/file/d/1qjfAcETvSjsR4fc9B4DjyxYreki9Gk_Q/view?usp=sharing)
 - Lecturas y cursos recomendados:
 
 ## Cursos relacionados
