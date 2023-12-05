@@ -44,9 +44,9 @@ Se darán presentaciones detalladas del uso de programas clave, todos de código
 
 ## Instructores 👾
 
-- Evelia Coss, Posdoc de la Dra. Alejandra Medina, LIIGH-UNAM
-- Sofia Salazar, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
-- Diego Ramirez, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
+- Evelia L. Coss Navarrete, Posdoc de la Dra. Alejandra Medina, LIIGH-UNAM
+- Sofia G. Salazar Magaña, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
+- Diego Ramírez Espinosa, Estudiante de Licenciatura en Ciencias Genómicas, ENES, UNAM
 
 ## Contenido 📌
 
